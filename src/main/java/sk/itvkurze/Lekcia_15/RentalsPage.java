@@ -31,25 +31,17 @@ public class RentalsPage {
         }
 
         switch (choice) {
-            case 1:
-                rentBook();
-                break;
-            case 2:
-                returnBook();
-                break;
-            case 3:
-                listAllRentals();
-                break;
-            case 4:
-                searchRentalsByMemberId();
-                break;
-            case 5:
+            case 1 -> rentBook();
+            case 2 -> returnBook();
+            case 3 -> listAllRentals();
+            case 4 -> searchRentalsByMemberId();
+            case 5 -> {
                 // Tu môžete prejsť späť do hlavnej ponuky alebo urobiť niečo iné.
-                break;
-            default:
+            }
+            default -> {
                 System.out.println("Invalid option. Please enter a number in the range from 1 to 5.");
                 displayRentalsMenu();
-                break;
+            }
         }
     }
 
