@@ -1,0 +1,2 @@
+Book1,Author1,ISBN1,300,5
+Book2,Author2,ISBN2,500,3
