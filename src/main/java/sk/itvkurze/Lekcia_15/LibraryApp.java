@@ -33,7 +33,7 @@ public class LibraryApp {
                     titlesPage.display();
                     break;
                 case 2:
-                    MembersPage.showPage();
+                    MembersPage.displayShowPage();
                     break;
                 case 3:
                     // prejde Rentals submenu
