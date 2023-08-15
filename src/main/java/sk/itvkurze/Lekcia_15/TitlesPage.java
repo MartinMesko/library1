@@ -9,12 +9,43 @@ import java.util.List;
 import java.util.Scanner;
 public class TitlesPage {
     private final Scanner scanner;
-    private final List<String> titlesBooks = new ArrayList<>();
-    private final List<String> titlesDVDs = new ArrayList<>();
+    private List<String> titles = new ArrayList<>();
+    private List<String> titlesDVD = new ArrayList<>();
+    private final String lineSeparator = System.lineSeparator();
 
     public TitlesPage(Scanner scanner) { // konstruktor
         this.scanner = scanner;
+        loadTitles();
     }
+
+    private List<String> loadTitlesFromFile(String filePath) throws IOException {
+        List<String> result = new ArrayList<>();
+        BufferedReader reader = null;
+        try {
+            File titlesFile = new File(filePath);
+            reader = new BufferedReader(new FileReader(titlesFile));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                result.add(line);
+            }
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+        }
+        return result;
+    }
+
+    public void loadTitles() {
+        try {
+            titles = loadTitlesFromFile("titles.txt");
+            titlesDVD = loadTitlesFromFile("titlesDVD.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void displayTitlesMenu() {
         System.out.println("Titles ");
@@ -35,7 +66,7 @@ public class TitlesPage {
         }
 
         switch (choice) {
-            case 1 -> showAlltitles();
+            case 1 -> showAllTitles();
             case 2 -> addTitle();
             case 3 -> deleteTitle();
             case 4 -> goBack();
@@ -46,38 +77,34 @@ public class TitlesPage {
         }
     }
 
-
-    public void showAlltitles() {
+    public void showAllTitles() {
         System.out.println("All Titles:");
-        for (String title : titlesBooks) {
+        for (String title : titles) {
             String[] row = title.split(",");
             if (row.length >= 5) {
                 System.out.println("Name: " + row[0] + " - Author: " + row[1] + " | ISBN: " + row[2] + " | Number of pages: " + row[3] + " | Available copies: " + row[4]);
             }
         }
-        for (String title : titlesDVDs) {
+        for (String title : titlesDVD) {
             String[] row = title.split(",");
             if (row.length >= 5) {
                 System.out.println("Name: " + row[0] + " - Author: " + row[1] + " - Number of chapters: " + row[2] + " - Length in minutes: " + row[3] + " | Available copies: " + row[4]);
             }
         }
-
-        System.out.println("Press enter to return to Titles menu...");
-        scanner.nextLine();
-        displayTitlesMenu();
+        System.out.println(lineSeparator + "Press enter to return to Titles menu...");
+        scanner.nextLine();  // Počká sa, kým používateľ stlačí kláves enter
+        displayTitlesMenu();  // Zobrazíme menu s názvami
     }
 
-    private void addTitle() {
+    private static void addTitle() {
         // TODO: Implementuj metodu pridaj titul
-        // Napríklad: titlesBooks.add("Name,Author,ISBN,Pages,Copies"); alebo pridať interaktívne pomocou scanneru
     }
 
-    private void deleteTitle() {
+    private static void deleteTitle() {
         // TODO: Implementuje metodu zmazania
-        // Napríklad: titlesBooks.remove(specificTitle);
     }
 
-    private void goBack() {
+    private static void goBack() {
         System.out.println("Going back to main menu...");
     }
 }
