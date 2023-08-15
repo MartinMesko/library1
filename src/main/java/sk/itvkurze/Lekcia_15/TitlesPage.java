@@ -18,7 +18,7 @@ public class TitlesPage {
         loadTitles();
     }
 
-    private List<String> loadTitlesFromFile(String filePath) throws IOException {
+    public static List<String> loadTitlesFromFile(String filePath) throws IOException {
         List<String> result = new ArrayList<>();
         BufferedReader reader = null;
         try {
