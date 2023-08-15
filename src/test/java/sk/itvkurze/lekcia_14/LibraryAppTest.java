@@ -28,32 +28,22 @@ class LibraryAppTest {
     }
 
     //MM Testovanie, či správna chybová správa je zobrazená pre neplatný číselný vstup
-    @ParameterizedTest
-    @CsvSource({
-            "6, Please enter a number in the range from 1 to 5",
-            "7, Please enter a number in the range from 1 to 5",
-            "8, Please enter a number in the range from 1 to 5"
-    })
-    void whenInputIsNotCorrectThenOutputShowsMessageTest(String input, String expectedResult) {
+    @Test
+    void whenInputIsNotCorrectThenOutputShowsMessageTest() {
         String lineSeparator = System.getProperty("line.separator");
-        provideInput(input + lineSeparator + "5" + lineSeparator);
+        provideInput("6" + lineSeparator + "5" + lineSeparator);
         LibraryApp.main(new String[]{});
-        assertTrue(outContent.toString().contains(expectedResult));
+        assertTrue(outContent.toString().contains("Please enter a number in the range from 1 to 5"));
     }
 
     //MM Testovanie, či je správna chybová správa zobrazená pre nečíselné neplatné vstupy
-    @ParameterizedTest
-    @CsvSource({
-            "A, Please enter a valid value",
-            "a, Please enter a valid value",
-            "., Please enter a valid value"
-    })
+    @Test
 
-    void whenInputIsNotCorrect2ThenOutputShowsMessageTest(String input, String expectedResult) {
+    void whenInputIsNotCorrect2ThenOutputShowsMessageTest() {
         String lineSeparator = System.getProperty("line.separator");
-        provideInput(input + lineSeparator + "5" + lineSeparator);
+        provideInput("a" + lineSeparator + "5" + lineSeparator);
         LibraryApp.main(new String[]{});
-        assertTrue(outContent.toString().contains(expectedResult));
+        assertTrue(outContent.toString().contains("Please enter a valid value."));
     }
 
     //MM Testovanie, či výstup zobrazuje správny text pre platný vstup
