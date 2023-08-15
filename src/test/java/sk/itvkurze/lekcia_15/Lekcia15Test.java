@@ -13,8 +13,8 @@ public class Lekcia15Test {
     public void testLoadTitlesFromFileTest() throws IOException {
         List<String> titles =  TitlesPage.loadTitlesFromFile("test.txt");
 
-        assertEquals("ABC", titles.get(0));
-        assertEquals("DEF", titles.get(1));
-        assertEquals("GHI", titles.get(2));
+        assertEquals("ABC", titles.get(0), "prvy riadok");
+        assertEquals("DEF", titles.get(1), "duhy riadok");
+        assertEquals("GHI", titles.get(2), "treti riadok");
     }
 }
