@@ -10,21 +10,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 public class TitlesPage {
     private final Scanner scanner;
-    private final List<Book> books = new ArrayList<>();
-    private final List<DVD> dvds = new ArrayList<>();
+    private static final List<Book> books = new ArrayList<>();
+    private static final List<DVD> dvds = new ArrayList<>();
     private final String lineSeparator = System.lineSeparator();
     public static int addedTitlesCount = 0;
-
-    private int totalTitlesCount = 0;
 
     public TitlesPage(Scanner scanner) { // konstruktor
         this.scanner = scanner;
         loadTitles();
     }
 
-    private int loadTitlesFromFile(String filePath, String type) throws IOException {
+    public static int loadTitlesFromFile(String filePath, String type) throws IOException {
         BufferedReader reader = null;
 
         try {
@@ -56,16 +55,14 @@ public class TitlesPage {
         return addedTitlesCount;
     }
 
-
     public void loadTitles() {
         try {
-            totalTitlesCount += loadTitlesFromFile("titles.txt", "Book");
-            totalTitlesCount += loadTitlesFromFile("titlesDVD.txt", "DVD");
+            loadTitlesFromFile("titles.txt", "Book");
+            loadTitlesFromFile("titlesDVD.txt", "DVD");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     public void displayTitlesMenu() {
         System.out.println("Titles ");
@@ -99,7 +96,6 @@ public class TitlesPage {
 
     public void showAllTitles() {
         System.out.println("All Titles:");
-        System.out.println("Included titles: " + addedTitlesCount);
         for (Book book : books) {
             System.out.println("Name: " + book.getTitle() + " - Author: " + book.getAuthorName() + " | ISBN: " + book.getIsbn() + " | Number of pages: " + book.getPageCount() + " | Available copies: " + book.getAvailableCopies());
         }
@@ -107,7 +103,7 @@ public class TitlesPage {
             System.out.println("Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
         }
 
-        System.out.println("Total number of all titles: " + totalTitlesCount);
+        System.out.println("Total number of all titles: " + addedTitlesCount);
         System.out.println(lineSeparator + "Press enter to return to Titles menu...");
         scanner.nextLine();
         displayTitlesMenu();
