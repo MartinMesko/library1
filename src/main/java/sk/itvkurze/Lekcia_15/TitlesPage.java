@@ -16,6 +16,8 @@ public class TitlesPage {
     private final List<DVD> dvds = new ArrayList<>();
     private final String lineSeparator = System.lineSeparator();
 
+    private int totalTitlesCount = 0;
+
     public TitlesPage(Scanner scanner) { // konstruktor
         this.scanner = scanner;
         loadTitles();
@@ -61,8 +63,8 @@ public class TitlesPage {
 
     public void loadTitles() {
         try {
-            loadTitlesFromFile("titles.txt", "Book");
-            loadTitlesFromFile("titlesDVD.txt", "DVD");
+            totalTitlesCount += loadTitlesFromFile("titles.txt", "Book");
+            totalTitlesCount += loadTitlesFromFile("titlesDVD.txt", "DVD");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -108,6 +110,7 @@ public class TitlesPage {
             System.out.println("Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
         }
 
+        System.out.println("Total number of titles: " + totalTitlesCount);
         System.out.println(lineSeparator + "Press enter to return to Titles menu...");
         scanner.nextLine();
         displayTitlesMenu();
