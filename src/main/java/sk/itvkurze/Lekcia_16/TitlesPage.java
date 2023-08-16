@@ -63,14 +63,6 @@ public class TitlesPage {
         }
     }
 
-    public List<Book> getBooks() {
-        return new ArrayList<>(books);
-    }
-
-    public List<DVD> getDVDs() {
-        return new ArrayList<>(dvds);
-    }
-
     public void displayTitlesMenu() {
         System.out.println("Titles ");
         System.out.println("1 - Show All Titles");
@@ -183,7 +175,7 @@ public class TitlesPage {
         }
     }
 
-    boolean saveTitle(Object title) {
+    public boolean saveTitle(Object title) {
         try {
             String fileName;
             String titleString;
