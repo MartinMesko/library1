@@ -10,6 +10,7 @@ public class TitlesPage {
     private final List<Book> books = new ArrayList<>();
     private final List<DVD> dvds = new ArrayList<>();
     private final String lineSeparator = System.lineSeparator();
+    private int totalTitlesCount = 0;
 
     public TitlesPage(Scanner scanner) {
         this.scanner = scanner;
@@ -21,7 +22,8 @@ public class TitlesPage {
         loadTitles();
     }
 
-    private void loadTitlesFromFile(String filePath, String type) throws IOException {
+    private int loadTitlesFromFile(String filePath, String type) throws IOException {
+        int addedTitlesCount = 0;
         BufferedReader reader = null;
         try {
             File titlesFile = new File(filePath);
@@ -33,29 +35,30 @@ public class TitlesPage {
                 try {
                     if (type.equals("Book") && parts.length >= 5) {
                         books.add(new Book(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4])));
+                        addedTitlesCount++;
                     } else if (type.equals("DVD") && parts.length >= 5) {
                         int duration = Integer.parseInt(parts[2]);
                         int numberOfTracks = Integer.parseInt(parts[3]);
                         int availableCopies = Integer.parseInt(parts[4]);
                         dvds.add(new DVD(parts[0], parts[1], duration, numberOfTracks, availableCopies));
+                        addedTitlesCount++;
                     }
                 } catch (NumberFormatException e) {
                     System.err.println("Error parsing number from line: " + line);
                 }
-
-
             }
         } finally {
             if (reader != null) {
                 reader.close();
             }
         }
+        return addedTitlesCount;
     }
 
     public void loadTitles() {
         try {
-            loadTitlesFromFile("titles.txt", "Book");
-            loadTitlesFromFile("titlesDVD.txt", "DVD");
+            totalTitlesCount += loadTitlesFromFile("titles.txt", "Book");
+            totalTitlesCount += loadTitlesFromFile("titlesDVD.txt", "DVD");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,6 +103,7 @@ public class TitlesPage {
             System.out.println("Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
         }
 
+        System.out.println("Total number of all titles: " + totalTitlesCount);
         System.out.println(lineSeparator + "Press enter to return to Titles menu...");
         scanner.nextLine();
         displayTitlesMenu();

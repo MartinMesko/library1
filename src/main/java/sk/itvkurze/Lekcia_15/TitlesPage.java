@@ -18,14 +18,14 @@ public class TitlesPage {
     private final String lineSeparator = System.lineSeparator();
     public static int totalTitlesCount = 0;
 
-    public TitlesPage(Scanner scanner) { // konstruktor
+    public TitlesPage(Scanner scanner) {
         this.scanner = scanner;
         loadTitles();
     }
 
     public static int loadTitlesFromFile(String filePath, String type) throws IOException {
         BufferedReader reader = null;
-        int addedTitlesCount = 0;  // presunuli sme túto premennú sem, aby sa resetovala pri každom volaní metódy
+        int addedTitlesCount = 0;
 
         try {
             File titlesFile = new File(filePath);
@@ -56,7 +56,7 @@ public class TitlesPage {
         }
 
         totalTitlesCount += addedTitlesCount;
-        return addedTitlesCount;  // teraz vraciame iba počet titulov pridaných z jedného súboru
+        return addedTitlesCount;
     }
 
     public void loadTitles() {
