@@ -110,7 +110,7 @@ public class TitlesPage {
             System.out.println("Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
         }
 
-        System.out.println("Total number of titles: " + totalTitlesCount);
+        System.out.println("Total number of all titles: " + totalTitlesCount);
         System.out.println(lineSeparator + "Press enter to return to Titles menu...");
         scanner.nextLine();
         displayTitlesMenu();
