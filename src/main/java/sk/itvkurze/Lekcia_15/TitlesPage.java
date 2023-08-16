@@ -21,8 +21,10 @@ public class TitlesPage {
         loadTitles();
     }
 
-    private void loadTitlesFromFile(String filePath, String type) throws IOException {
+    private int loadTitlesFromFile(String filePath, String type) throws IOException {
         BufferedReader reader = null;
+        int addedTitlesCount = 0;
+
         try {
             File titlesFile = new File(filePath);
             reader = new BufferedReader(new FileReader(titlesFile));
@@ -35,24 +37,27 @@ public class TitlesPage {
                         int pageCount = Integer.parseInt(parts[3]);
                         int availableCopies = Integer.parseInt(parts[4]);
                         books.add(new Book(parts[0], parts[1], pageCount, parts[2], availableCopies));
+                        addedTitlesCount++;
                     } else if (type.equals("DVD") && parts.length >= 5) {
                         int duration = Integer.parseInt(parts[2]);
                         int numberOfTracks = Integer.parseInt(parts[3]);
                         int availableCopies = Integer.parseInt(parts[4]);
                         dvds.add(new DVD(parts[0], parts[1], duration, numberOfTracks, availableCopies));
+                        addedTitlesCount++;
                     }
                 } catch (NumberFormatException e) {
                     System.err.println("Error parsing number from line: " + line);
                 }
-
-
             }
         } finally {
             if (reader != null) {
                 reader.close();
             }
         }
+
+        return addedTitlesCount;
     }
+
 
     public void loadTitles() {
         try {
