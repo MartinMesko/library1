@@ -15,6 +15,7 @@ public class TitlesPage {
     private final List<Book> books = new ArrayList<>();
     private final List<DVD> dvds = new ArrayList<>();
     private final String lineSeparator = System.lineSeparator();
+    public static int addedTitlesCount = 0;
 
     private int totalTitlesCount = 0;
 
@@ -25,7 +26,6 @@ public class TitlesPage {
 
     private int loadTitlesFromFile(String filePath, String type) throws IOException {
         BufferedReader reader = null;
-        int addedTitlesCount = 0;
 
         try {
             File titlesFile = new File(filePath);
@@ -103,6 +103,7 @@ public class TitlesPage {
 
     public void showAllTitles() {
         System.out.println("All Titles:");
+        System.out.println("Included titles: " + addedTitlesCount);
         for (Book book : books) {
             System.out.println("Name: " + book.getTitle() + " - Author: " + book.getAuthorName() + " | ISBN: " + book.getIsbn() + " | Number of pages: " + book.getPageCount() + " | Available copies: " + book.getAvailableCopies());
         }
