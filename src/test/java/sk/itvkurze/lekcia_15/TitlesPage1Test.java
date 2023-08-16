@@ -1,21 +1,29 @@
 package sk.itvkurze.lekcia_15;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sk.itvkurze.Lekcia_15.TitlesPage;
-
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TitlesPage1Test {
+    @Test
+    void ifTheQuotedLinesFromTheBookfileAreNotIdenticalThanPrintTheText() throws IOException {
+        int actualAddedTitlesCount =  TitlesPage.loadTitlesFromFile("bookTest.txt", "Book");
 
-//    @Test
-//    void ifTheQuotedLinesFromTheSubfileAreNotIdenticalThanPrintTheText() throws IOException {
-//        List<String> titles =  TitlesPage.loadTitlesFromFile("test.txt");
-//
-//        assertEquals("ABC", titles.get(0), "first line");
-//        assertEquals("DEF", titles.get(1), "second line");
-//        assertEquals("GHI", titles.get(2), "third line");
-//    }
+        assertEquals(10, actualAddedTitlesCount);
+    }
+
+    @Test
+    void ifTheQuotedLinesFromTheDVDfileAreNotIdenticalThanPrintTheText() throws IOException {
+        int actualAddedTitlesCount =  TitlesPage.loadTitlesFromFile("DVDTest.txt", "DVD");
+
+        assertEquals(10, actualAddedTitlesCount);
+    }
+
+    @BeforeEach
+    void resetTheInstanceVariable(){
+        TitlesPage.addedTitlesCount = 0;
+    }
 }
