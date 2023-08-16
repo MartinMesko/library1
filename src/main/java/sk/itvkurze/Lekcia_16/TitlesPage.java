@@ -32,9 +32,7 @@ public class TitlesPage {
                 String[] parts = line.split(",");
                 try {
                     if (type.equals("Book") && parts.length >= 5) {
-                        int pageCount = Integer.parseInt(parts[3]);
-                        int availableCopies = Integer.parseInt(parts[4]);
-                        books.add(new Book(parts[0], parts[1], pageCount, parts[2], availableCopies));
+                        books.add(new Book(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4])));
                     } else if (type.equals("DVD") && parts.length >= 5) {
                         int duration = Integer.parseInt(parts[2]);
                         int numberOfTracks = Integer.parseInt(parts[3]);
@@ -147,7 +145,7 @@ public class TitlesPage {
         System.out.print("Enter the number of copies of the book: ");
         int copies = Integer.parseInt(scanner.nextLine());
 
-        boolean result = saveTitle(new Book(author, name, pages, isbn, copies)); // You can modify this if you have a separate variable for total copies
+        boolean result = saveTitle(new Book(name, author, isbn, pages, copies)); // You can modify this if you have a separate variable for total copies
         if (result) {
             System.out.println("The book has been added successfully.");
         } else {

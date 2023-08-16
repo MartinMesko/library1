@@ -36,16 +36,12 @@ public class TitlesPage {
                 String[] parts = line.split(",");
                 try {
                     if (type.equals("Book") && parts.length >= 5) {
-                        int pageCount = Integer.parseInt(parts[3]);
-                        int availableCopies = Integer.parseInt(parts[4]);
-                        books.add(new Book(parts[0], parts[1], pageCount, parts[2], availableCopies));
-                        addedTitlesCount++;
+                        books.add(new Book(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4])));
                     } else if (type.equals("DVD") && parts.length >= 5) {
                         int duration = Integer.parseInt(parts[2]);
                         int numberOfTracks = Integer.parseInt(parts[3]);
                         int availableCopies = Integer.parseInt(parts[4]);
                         dvds.add(new DVD(parts[0], parts[1], duration, numberOfTracks, availableCopies));
-                        addedTitlesCount++;
                     }
                 } catch (NumberFormatException e) {
                     System.err.println("Error parsing number from line: " + line);
