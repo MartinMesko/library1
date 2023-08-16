@@ -16,7 +16,7 @@ public class TitlesPage {
     private static final List<Book> books = new ArrayList<>();
     private static final List<DVD> dvds = new ArrayList<>();
     private final String lineSeparator = System.lineSeparator();
-    public static int addedTitlesCount = 0;
+    public static int totalTitlesCount = 0;
 
     public TitlesPage(Scanner scanner) { // konstruktor
         this.scanner = scanner;
@@ -25,6 +25,7 @@ public class TitlesPage {
 
     public static int loadTitlesFromFile(String filePath, String type) throws IOException {
         BufferedReader reader = null;
+        int addedTitlesCount = 0;  // presunuli sme túto premennú sem, aby sa resetovala pri každom volaní metódy
 
         try {
             File titlesFile = new File(filePath);
@@ -36,11 +37,13 @@ public class TitlesPage {
                 try {
                     if (type.equals("Book") && parts.length >= 5) {
                         books.add(new Book(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4])));
+                        addedTitlesCount++;
                     } else if (type.equals("DVD") && parts.length >= 5) {
                         int duration = Integer.parseInt(parts[2]);
                         int numberOfTracks = Integer.parseInt(parts[3]);
                         int availableCopies = Integer.parseInt(parts[4]);
                         dvds.add(new DVD(parts[0], parts[1], duration, numberOfTracks, availableCopies));
+                        addedTitlesCount++;
                     }
                 } catch (NumberFormatException e) {
                     System.err.println("Error parsing number from line: " + line);
@@ -52,7 +55,8 @@ public class TitlesPage {
             }
         }
 
-        return addedTitlesCount;
+        totalTitlesCount += addedTitlesCount;
+        return addedTitlesCount;  // teraz vraciame iba počet titulov pridaných z jedného súboru
     }
 
     public void loadTitles() {
@@ -103,7 +107,7 @@ public class TitlesPage {
             System.out.println("Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
         }
 
-        System.out.println("Total number of all titles: " + addedTitlesCount);
+        System.out.println("Total number of all titles: " + totalTitlesCount);
         System.out.println(lineSeparator + "Press enter to return to Titles menu...");
         scanner.nextLine();
         displayTitlesMenu();

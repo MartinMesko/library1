@@ -1,14 +1,8 @@
 package sk.itvkurze.Lekcia_16;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
+import java.io.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryAppTest {
@@ -22,11 +16,12 @@ class LibraryAppTest {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(testFile))) {
             writer.write("Author,Title,100,ISBN001,5,10");
             writer.newLine();
-            // Pridaj ďalšie riadky podľa potreby, keď budeš vytvárať ďalšie testy
+            // Pridaj ďalšie riadky podľa potreby
         } catch (IOException e) {
             fail("Chyba pri vytváraní testovacieho súboru: " + e.getMessage());
         }
 
+        // Ak je potrebné inicializovať iné komponenty, urobte to tu.
     }
 
     @AfterEach
@@ -41,6 +36,5 @@ class LibraryAppTest {
 
         assertTrue(testFile.exists(), "Testovací súbor by mal existovať");
     }
-
 
 }

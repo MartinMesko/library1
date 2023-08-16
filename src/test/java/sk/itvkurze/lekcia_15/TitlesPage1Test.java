@@ -22,8 +22,8 @@ class TitlesPage1Test {
         assertEquals(10, actualAddedTitlesCount);
     }
 
-    @BeforeEach
-    void resetTheInstanceVariable(){
-        TitlesPage.addedTitlesCount = 0;
-    }
+//    @BeforeEach
+//    void resetTheInstanceVariable(){
+//        TitlesPage.addedTitlesCount = 0;
+//    }
 }
