@@ -149,7 +149,7 @@ public class TitlesPage {
         System.out.print("Enter the number of copies of the book: ");
         int copies = Integer.parseInt(scanner.nextLine());
 
-        boolean result = saveTitle(new Book(name, author, isbn, pages, copies)); // You can modify this if you have a separate variable for total copies
+        boolean result = saveTitle(new Book(name, author, isbn, pages, copies));
         if (result) {
             System.out.println("The book has been added successfully.");
         } else {
@@ -169,7 +169,7 @@ public class TitlesPage {
         System.out.print("Enter the number of copies of the DVD: ");
         int copies = Integer.parseInt(scanner.nextLine());
 
-        boolean result = saveTitle(new DVD(author, name, length, chapters, copies)); // You can modify this if you have a separate variable for total copies
+        boolean result = saveTitle(new DVD(author, name, length, chapters, copies));
         if (result) {
             System.out.println("The DVD has been added successfully.");
         } else {
