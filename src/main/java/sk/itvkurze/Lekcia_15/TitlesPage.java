@@ -54,7 +54,6 @@ public class TitlesPage {
                 reader.close();
             }
         }
-
         totalTitlesCount += addedTitlesCount;
         return addedTitlesCount;
     }

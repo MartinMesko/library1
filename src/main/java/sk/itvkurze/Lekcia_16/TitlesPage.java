@@ -210,9 +210,7 @@ public class TitlesPage {
         //TODO: implement
     }
 
-    private void goBack() {
+    private static void goBack() {
         System.out.println("Going back to main menu...");
     }
-
-
 }
