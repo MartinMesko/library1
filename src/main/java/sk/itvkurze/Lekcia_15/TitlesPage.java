@@ -61,8 +61,8 @@ public class TitlesPage {
 
     public void loadTitles() {
         try {
-            loadTitlesFromFile("titles.txt", "Book");
-            loadTitlesFromFile("titlesDVD.txt", "DVD");
+            totalTitlesCount += loadTitlesFromFile("titles.txt", "Book");
+            totalTitlesCount += loadTitlesFromFile("titlesDVD.txt", "DVD");
         } catch (IOException e) {
             e.printStackTrace();
         }
