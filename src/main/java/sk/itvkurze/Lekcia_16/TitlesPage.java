@@ -10,7 +10,7 @@ public class TitlesPage {
     private static final List<Book> books = new ArrayList<>();
     private static final List<DVD> dvds = new ArrayList<>();
     private final String lineSeparator = System.lineSeparator();
-    private int totalTitlesCount = 0;
+    public static int totalTitlesCount = 0;
 
     public TitlesPage(Scanner scanner) {
         this.scanner = scanner;
@@ -52,6 +52,7 @@ public class TitlesPage {
                 reader.close();
             }
         }
+        totalTitlesCount += addedTitlesCount;
         return addedTitlesCount;
     }
 

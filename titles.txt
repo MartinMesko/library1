@@ -1,8 +1,3 @@
-
 NewAuthor,NewTitle,ISBN002,150,5
 Peter Minárik,Juraj Malíček,1234567890123,300,6
-Martin Meško,Ako sa Martin učil programovať,1234567890321,555,1
-NewAuthor,NewTitle,ISBN002,150,5
-
-NewAuthor,NewTitle,ISBN002,150,5
-NewAuthor,NewTitle,ISBN002,150,5
+njknl,hklj,675785,678,22
