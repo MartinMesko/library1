@@ -58,7 +58,7 @@ public class TitlesPage {
 
     public void loadTitles() {
         try {
-            totalTitlesCount += loadTitlesFromFile("titles.txt", "Book");
+            totalTitlesCount += loadTitlesFromFile("titlesBook.txt", "Book");
             totalTitlesCount += loadTitlesFromFile("titlesDVD.txt", "DVD");
         } catch (IOException e) {
             e.printStackTrace();
@@ -197,7 +197,7 @@ public class TitlesPage {
             String titleString;
 
             if (title instanceof Book book) {
-                fileName = "titles.txt";
+                fileName = "titlesBook.txt";
                 titleString = book.getAuthorName() + "," + book.getTitle() + "," + book.getIsbn() + "," + book.getPageCount() + "," + book.getAvailableCopies();
                 books.add(book);
             } else {

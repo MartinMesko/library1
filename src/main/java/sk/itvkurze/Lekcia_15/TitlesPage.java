@@ -24,9 +24,8 @@ public class TitlesPage {
     }
 
     public static int loadTitlesFromFile(String filePath, String type) throws IOException {
-        BufferedReader reader = null;
         int addedTitlesCount = 0;
-
+        BufferedReader reader = null;
         try {
             File titlesFile = new File(filePath);
             reader = new BufferedReader(new FileReader(titlesFile));
@@ -60,7 +59,7 @@ public class TitlesPage {
 
     public void loadTitles() {
         try {
-            totalTitlesCount += loadTitlesFromFile("titles.txt", "Book");
+            totalTitlesCount += loadTitlesFromFile("titlesBook.txt", "Book");
             totalTitlesCount += loadTitlesFromFile("titlesDVD.txt", "DVD");
         } catch (IOException e) {
             e.printStackTrace();
@@ -137,3 +136,5 @@ public class TitlesPage {
         System.out.println("Going back to main menu...");
     }
 }
+
+// TODO: Doplniť
