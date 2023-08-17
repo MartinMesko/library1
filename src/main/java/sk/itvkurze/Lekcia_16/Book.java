@@ -6,15 +6,17 @@ public class Book {
     private int pageCount;
     private String isbn;
     private int availableCopies;
+    private int startingNumber;
 
 
     // konštruktor
-    public Book(String title, String authorName, String isbn,int pageCount, int availableCopies) {
+    public Book(int startingNumber, String title, String authorName, String isbn,int pageCount, int availableCopies) {
         this.authorName = authorName;
         this.title = title;
         this.pageCount = pageCount;
         this.isbn = isbn;
         this.availableCopies = availableCopies;
+        this.startingNumber = startingNumber;
 
     }
 
@@ -57,6 +59,14 @@ public class Book {
 
     public void setAvailableCopies(int availableCopies) {
         this.availableCopies = availableCopies;
+    }
+
+    public int getStartingNumber(){
+        return startingNumber;
+    }
+
+    public void setStartingNumber(int startingNumber){
+        this.startingNumber = startingNumber;
     }
 
 
