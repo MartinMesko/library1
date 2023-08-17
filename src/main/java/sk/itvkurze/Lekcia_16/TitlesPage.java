@@ -196,6 +196,7 @@ public class TitlesPage {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
                 writer.write(titleString + lineSeparator);
             }
+            totalTitlesCount++;
 
             return true;
         } catch (IOException e) {
