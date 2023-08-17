@@ -136,5 +136,3 @@ public class TitlesPage {
         System.out.println("Going back to main menu...");
     }
 }
-
-// TODO: Doplniť
