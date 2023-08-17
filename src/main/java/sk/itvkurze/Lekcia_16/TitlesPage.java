@@ -9,7 +9,7 @@ public class TitlesPage {
     private final Scanner scanner;
     private static final List<Book> books = new ArrayList<>();
     private static final List<DVD> dvds = new ArrayList<>();
-    private final String lineSeparator = System.lineSeparator();
+    private static final String lineSeparator = System.lineSeparator();
     public static int totalTitlesCount = 0;
     public static int startingNumber = 1;
 
@@ -223,7 +223,7 @@ public class TitlesPage {
         }
     }
 
-    public boolean saveTitle(Object title) {
+    public static boolean saveTitle(Object title) {
         try {
             String fileName;
             String titleString;
