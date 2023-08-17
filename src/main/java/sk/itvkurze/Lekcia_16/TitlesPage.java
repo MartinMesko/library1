@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class TitlesPage {
     private final Scanner scanner;
-    private final List<Book> books = new ArrayList<>();
-    private final List<DVD> dvds = new ArrayList<>();
+    private static final List<Book> books = new ArrayList<>();
+    private static final List<DVD> dvds = new ArrayList<>();
     private final String lineSeparator = System.lineSeparator();
     private int totalTitlesCount = 0;
 
@@ -22,7 +22,7 @@ public class TitlesPage {
         loadTitles();
     }
 
-    private int loadTitlesFromFile(String filePath, String type) throws IOException {
+    public static int loadTitlesFromFile(String filePath, String type) throws IOException {
         int addedTitlesCount = 0;
         BufferedReader reader = null;
         try {
