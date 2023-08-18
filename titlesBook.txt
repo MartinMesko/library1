@@ -1,1 +1,3 @@
-1,NewAuthor,NewTitle,ISBN002,150,52,Peter Minárik,Juraj Malíček,1234567890123,300,63,njknl,hklj,675785,678,224,NewAuthor,NewTitle,ISBN002,150,5
+NewAuthor,NewTitle,ISBN002,150,5
+
+Ja,Martin,898689,260,1

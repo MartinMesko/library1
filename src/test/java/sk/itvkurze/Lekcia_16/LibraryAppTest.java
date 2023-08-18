@@ -1,20 +1,11 @@
 package sk.itvkurze.Lekcia_16;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ArgumentsSource;
-
-import java.io.IOException;
-import java.io.RandomAccessFile;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LibraryAppTest extends LibraryAppLection16Helper{
+public class LibraryAppTest {
 
-    /*
     private TitlesPage titlesPage;
 
     @BeforeEach
@@ -38,13 +29,5 @@ public class LibraryAppTest extends LibraryAppLection16Helper{
         assertTrue(result, "Ukladanie DVD malo prebehnúť úspešne");
 
 
-    }
-     */
-
-    @ParameterizedTest
-    @ArgumentsSource(ArgumentProviderLybraryApp.class)
-    public void whenSaveTheTitlesThanWriteTheText(Object object, boolean expected){
-        boolean actual = TitlesPage.saveTitle(object);
-        assertEquals(expected, actual);
     }
 }

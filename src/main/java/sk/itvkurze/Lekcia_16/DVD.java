@@ -6,17 +6,15 @@ public class DVD {
     private int durationInMinutes;
     private int numberOfTracks;
     private int availableCopies;
-    private  int startingNumber;
 
 
     // konštruktor
-    public DVD(int startingNumber, String title, String authorName,int numberOfTracks , int durationInMinutes, int availableCopies) {
+    public DVD(String title, String authorName,int numberOfTracks , int durationInMinutes, int availableCopies) {
         this.authorName = authorName;
         this.title = title;
         this.durationInMinutes = durationInMinutes;
         this.numberOfTracks = numberOfTracks;
         this.availableCopies = availableCopies;
-        this.startingNumber = startingNumber;
 
     }
 
@@ -61,14 +59,7 @@ public class DVD {
         this.availableCopies = availableCopies;
     }
 
-    public int getStartingNumber(){
-        return startingNumber;
-    }
-
-    public void setStartingNumber(int startingNumber){
-        this.startingNumber = startingNumber;
-    }
-
 
 }
+
 

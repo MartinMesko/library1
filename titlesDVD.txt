@@ -1,4 +1,3 @@
-5,NewAuthor,NewTitle,7,120,3
-6,NewAuthor,NewTitle,7,120,3
+NewAuthor,NewTitle,7,120,3
 
-7,NewAuthor,NewTitle,7,120,3
+Ty,Mato,89,3,2

@@ -1,6 +1,8 @@
 package sk.itvkurze.Lekcia_16;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,9 +11,8 @@ public class TitlesPage {
     private final Scanner scanner;
     private static final List<Book> books = new ArrayList<>();
     private static final List<DVD> dvds = new ArrayList<>();
-    private static final String lineSeparator = System.lineSeparator();
+    private final String lineSeparator = System.lineSeparator();
     public static int totalTitlesCount = 0;
-    public static int startingNumber = 1;
 
     public TitlesPage(Scanner scanner) {
         this.scanner = scanner;
@@ -35,18 +36,14 @@ public class TitlesPage {
                 String[] parts = line.split(",");
                 try {
                     if (type.equals("Book") && parts.length >= 5) {
-                        //books.add(new Book(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4])));
-                        books.add(new Book(startingNumber, parts[1], parts[2], parts[3], Integer.parseInt(parts[4]), Integer.parseInt(parts[5])));
+                        books.add(new Book(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4])));
                         addedTitlesCount++;
-                        startingNumber++;
                     } else if (type.equals("DVD") && parts.length >= 5) {
-                        int duration = Integer.parseInt(parts[3]);
-                        int numberOfTracks = Integer.parseInt(parts[4]);
-                        int availableCopies = Integer.parseInt(parts[5]);
-                        //dvds.add(new DVD(parts[0], parts[1], duration, numberOfTracks, availableCopies));
-                        dvds.add(new DVD(startingNumber, parts[1], parts[2], duration, numberOfTracks, availableCopies));
+                        int duration = Integer.parseInt(parts[2]);
+                        int numberOfTracks = Integer.parseInt(parts[3]);
+                        int availableCopies = Integer.parseInt(parts[4]);
+                        dvds.add(new DVD(parts[0], parts[1], duration, numberOfTracks, availableCopies));
                         addedTitlesCount++;
-                        startingNumber++;
                     }
                 } catch (NumberFormatException e) {
                     System.err.println("Error parsing number from line: " + line);
@@ -100,7 +97,6 @@ public class TitlesPage {
         }
     }
 
-    /*
     private int displayTitleWithNumber(Object title, int startingNumber) {
         if (title instanceof Book) {
             Book book = (Book) title;
@@ -111,25 +107,9 @@ public class TitlesPage {
         }
         return startingNumber + 1;
     }
-     */
-
-
-    private void displayTitleWithNumber(Object title) {
-        if (title instanceof Book) {
-            Book book = (Book) title;
-            System.out.println(book.getStartingNumber() + ". Name: " + book.getTitle() + " - Author: " + book.getAuthorName() + " | ISBN: " + book.getIsbn() + " | Number of pages: " + book.getPageCount() + " | Available copies: " + book.getAvailableCopies());
-        } else if (title instanceof DVD) {
-            DVD dvd = (DVD) title;
-            System.out.println(dvd.getStartingNumber() + ". Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
-        }
-    }
-
-
 
     public void showAllTitles() {
         System.out.println("All Titles:");
-
-        /*
         int titleCounter = 1;
 
         for (Book book : books) {
@@ -138,20 +118,13 @@ public class TitlesPage {
         for (DVD dvd : dvds) {
             titleCounter = displayTitleWithNumber(dvd, titleCounter);
         }
-         */
-
-        for (Book book : books) {
-            displayTitleWithNumber(book);
-        }
-        for (DVD dvd : dvds) {
-            displayTitleWithNumber(dvd);
-        }
 
         System.out.println("Total number of all titles: " + totalTitlesCount);
         System.out.println(lineSeparator + "Press enter to return to Titles menu...");
         scanner.nextLine();
         displayTitlesMenu();
     }
+
 
     public void addTitle() {
         System.out.println("Add a new title");
@@ -182,62 +155,63 @@ public class TitlesPage {
     }
 
     private void addBook() {
-        System.out.print("Enter the name of the book: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter the author of the book: ");
+        System.out.print("Enter Author's name: ");
         String author = scanner.nextLine();
-        System.out.print("Enter the ISBN of the book: ");
-        String isbn = scanner.nextLine();
-        System.out.print("Enter the number of pages of the book: ");
-        int pages = Integer.parseInt(scanner.nextLine());
-        System.out.print("Enter the number of copies of the book: ");
+        System.out.print("Enter title name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter available copies: ");
         int copies = Integer.parseInt(scanner.nextLine());
+        System.out.print("Enter ISBN: ");
+        String isbn = scanner.nextLine();
+        System.out.print("Enter number of Pages: ");
+        int pages = Integer.parseInt(scanner.nextLine());
 
-        //boolean result = saveTitle(new Book(name, author, isbn, pages, copies));
-        boolean result = saveTitle(new Book(startingNumber, name, author, isbn, pages, copies));
+
+        boolean result = saveTitle(new sk.itvkurze.Lekcia_16.Book(author, name, isbn, pages, copies));
         if (result) {
-            System.out.println("The book has been added successfully.");
+            System.out.println("Book added succesfully..." + lineSeparator + "Press enter to continue...");
+            scanner.nextLine();
+            displayTitlesMenu();
         } else {
             System.out.println("Failed to add the book.");
         }
     }
 
     private void addDVD() {
-        System.out.print("Enter the name of the DVD: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter the author of the DVD: ");
+        System.out.print("Enter Author's name: ");
         String author = scanner.nextLine();
-        System.out.print("Enter the number of chapters of the DVD: ");
-        int chapters = Integer.parseInt(scanner.nextLine());
-        System.out.print("Enter the length in minutes of the DVD: ");
-        int length = Integer.parseInt(scanner.nextLine());
-        System.out.print("Enter the number of copies of the DVD: ");
+        System.out.print("Enter title name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter available copies: ");
         int copies = Integer.parseInt(scanner.nextLine());
+        System.out.print("Enter Length (minutes): ");
+        int length = Integer.parseInt(scanner.nextLine());
+        System.out.print("Enter number of chapters: ");
+        int chapters = Integer.parseInt(scanner.nextLine());
 
-        //boolean result = saveTitle(new DVD(author, name, length, chapters, copies));
-        boolean result = saveTitle(new DVD(startingNumber, author, name, length, chapters, copies));
+        boolean result = saveTitle(new sk.itvkurze.Lekcia_16.DVD(author, name, length, chapters, copies));
         if (result) {
-            System.out.println("The DVD has been added successfully.");
+            System.out.println("Dvd added succesfully..." + lineSeparator + "Press enter to continue...");
+            scanner.nextLine();
+            displayTitlesMenu();
         } else {
             System.out.println("Failed to add the DVD.");
         }
     }
 
-    public static boolean saveTitle(Object title) {
+    public boolean saveTitle(Object title) {
         try {
             String fileName;
             String titleString;
 
             if (title instanceof Book book) {
                 fileName = "titlesBook.txt";
-                //titleString = book.getAuthorName() + "," + book.getTitle() + "," + book.getIsbn() + "," + book.getPageCount() + "," + book.getAvailableCopies();
-                titleString = book.getStartingNumber()+ " " + book.getAuthorName() + "," + book.getTitle() + "," + book.getIsbn() + "," + book.getPageCount() + "," + book.getAvailableCopies();
+                titleString = book.getAuthorName() + "," + book.getTitle() + "," + book.getIsbn() + "," + book.getPageCount() + "," + book.getAvailableCopies();
                 books.add(book);
             } else {
                 DVD dvd = (DVD) title;
                 fileName = "titlesDVD.txt";
-                //titleString = dvd.getAuthorName() + "," + dvd.getTitle() + "," + dvd.getNumberOfTracks() + "," + dvd.getDurationInMinutes() + "," + dvd.getAvailableCopies();
-                titleString = dvd.getStartingNumber() + " " + dvd.getAuthorName() + "," + dvd.getTitle() + "," + dvd.getNumberOfTracks() + "," + dvd.getDurationInMinutes() + "," + dvd.getAvailableCopies();
+                titleString = dvd.getAuthorName() + "," + dvd.getTitle() + "," + dvd.getNumberOfTracks() + "," + dvd.getDurationInMinutes() + "," + dvd.getAvailableCopies();
                 dvds.add(dvd);
             }
 
@@ -253,11 +227,25 @@ public class TitlesPage {
         }
     }
 
-    private void deleteTitle() {
-        //TODO: implement
+    private static void deleteTitle() {
+
     }
 
-    private static void goBack() {
+
+
+    public int getId() {
+        System.out.print("Enter the number of the title: ");
+        int titleNumber = scanner.nextInt();
+        scanner.nextLine();
+
+        return titleNumber;
+    }
+
+
+
+    private void goBack() {
         System.out.println("Going back to main menu...");
     }
+
+
 }
