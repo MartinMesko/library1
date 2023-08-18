@@ -14,6 +14,9 @@ public class TitlesPage {
     private final String lineSeparator = System.lineSeparator();
     public static int totalTitlesCount = 0;
 
+    public static final String bookFilePath = "titlesBook.txt";
+    public static final String dvdFilePath = "titlesDVD.txt";
+
     public TitlesPage(Scanner scanner) {
         this.scanner = scanner;
         loadTitles();
@@ -60,8 +63,8 @@ public class TitlesPage {
 
     public void loadTitles() {
         try {
-            totalTitlesCount += loadTitlesFromFile("titlesBook.txt", "Book");
-            totalTitlesCount += loadTitlesFromFile("titlesDVD.txt", "DVD");
+            totalTitlesCount += loadTitlesFromFile(bookFilePath, "Book");
+            totalTitlesCount += loadTitlesFromFile(dvdFilePath, "DVD");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -205,12 +208,12 @@ public class TitlesPage {
             String titleString;
 
             if (title instanceof Book book) {
-                fileName = "titlesBook.txt";
+                fileName = bookFilePath;
                 titleString = book.getAuthorName() + "," + book.getTitle() + "," + book.getIsbn() + "," + book.getPageCount() + "," + book.getAvailableCopies();
                 books.add(book);
             } else {
                 DVD dvd = (DVD) title;
-                fileName = "titlesDVD.txt";
+                fileName = dvdFilePath;
                 titleString = dvd.getAuthorName() + "," + dvd.getTitle() + "," + dvd.getNumberOfTracks() + "," + dvd.getDurationInMinutes() + "," + dvd.getAvailableCopies();
                 dvds.add(dvd);
             }

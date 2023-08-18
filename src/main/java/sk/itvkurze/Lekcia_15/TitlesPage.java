@@ -15,6 +15,9 @@ public class TitlesPage {
     private final String lineSeparator = System.lineSeparator();
     public static int totalTitlesCount = 0;
 
+    public static final String bookFilePath = "titlesBook.txt";
+    public static final String dvdFilePath = "titlesDVD.txt";
+
     public TitlesPage(Scanner scanner) {
         this.scanner = scanner;
         loadTitles();
@@ -56,8 +59,8 @@ public class TitlesPage {
 
     public void loadTitles() {
         try {
-            totalTitlesCount += loadTitlesFromFile("titlesBook.txt", "Book");
-            totalTitlesCount += loadTitlesFromFile("titlesDVD.txt", "DVD");
+            totalTitlesCount += loadTitlesFromFile(bookFilePath, "Book");
+            totalTitlesCount += loadTitlesFromFile(dvdFilePath, "DVD");
         } catch (IOException e) {
             e.printStackTrace();
         }
