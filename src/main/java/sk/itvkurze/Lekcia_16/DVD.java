@@ -58,8 +58,4 @@ public class DVD {
     public void setAvailableCopies(int availableCopies) {
         this.availableCopies = availableCopies;
     }
-
-
 }
-
-

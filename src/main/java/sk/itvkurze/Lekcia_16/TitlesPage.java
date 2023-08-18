@@ -1,19 +1,16 @@
 package sk.itvkurze.Lekcia_16;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class TitlesPage {
     private final Scanner scanner;
-    private static final List<Book> books = new ArrayList<>();
-    private static final List<DVD> dvds = new ArrayList<>();
+    public static final List<Book> books = new ArrayList<>();
+    public static final List<DVD> dvds = new ArrayList<>();
     private final String lineSeparator = System.lineSeparator();
     public static int totalTitlesCount = 0;
-
     public static final String bookFilePath = "titlesBook.txt";
     public static final String dvdFilePath = "titlesDVD.txt";
 
@@ -100,19 +97,6 @@ public class TitlesPage {
         }
     }
 
-    /*
-    private int displayTitleWithNumber(Object title, int startingNumber) {
-        if (title instanceof Book) {
-            Book book = (Book) title;
-            System.out.println(startingNumber + ". Name: " + book.getTitle() + " - Author: " + book.getAuthorName() + " | ISBN: " + book.getIsbn() + " | Number of pages: " + book.getPageCount() + " | Available copies: " + book.getAvailableCopies());
-        } else if (title instanceof DVD) {
-            DVD dvd = (DVD) title;
-            System.out.println(startingNumber + ". Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
-        }
-        return startingNumber + 1;
-    }
-     */
-
     public void showAllTitles() {
         System.out.println("All Titles:");
 
@@ -160,18 +144,22 @@ public class TitlesPage {
 
     private void addBook() {
         System.out.print("Enter Author's name: ");
-        String author = scanner.nextLine();
+        String author = validationCheckString();
         System.out.print("Enter title name: ");
-        String name = scanner.nextLine();
+        String name = validationCheckString();
         System.out.print("Enter available copies: ");
-        int copies = Integer.parseInt(scanner.nextLine());
+        int copies = validationCheckInt();
         System.out.print("Enter ISBN: ");
-        String isbn = scanner.nextLine();
+        String isbn = validationCheckISBN();                // neviem ci to nechame ako String. Podla mna ISBN by malo byt long.
+                                                            // Ak nechame String tak program vyhodnoti dlhe cislo ako String.
+                                                            // V zneni zadania je ISBN 13 miestne cislo a nezmesti sa do int.
+                                                            // Jediny sposob je zvlast metoda len kvoli ISBN na validaciu tak ako je to teraz.
+                                                            // otazne je ci v dalsich lekciach niekde nebude robit podobny problem.
         System.out.print("Enter number of Pages: ");
-        int pages = Integer.parseInt(scanner.nextLine());
+        int pages = validationCheckInt();
 
 
-        boolean result = saveTitle(new sk.itvkurze.Lekcia_16.Book(author, name, isbn, pages, copies));
+        boolean result = saveTitle(new Book(author, name, isbn, pages, copies));
         if (result) {
             System.out.println("Book added succesfully..." + lineSeparator + "Press enter to continue...");
             scanner.nextLine();
@@ -183,17 +171,17 @@ public class TitlesPage {
 
     private void addDVD() {
         System.out.print("Enter Author's name: ");
-        String author = scanner.nextLine();
+        String author = validationCheckString();
         System.out.print("Enter title name: ");
-        String name = scanner.nextLine();
+        String name = validationCheckString();
         System.out.print("Enter available copies: ");
-        int copies = Integer.parseInt(scanner.nextLine());
+        int copies = validationCheckInt();
         System.out.print("Enter Length (minutes): ");
-        int length = Integer.parseInt(scanner.nextLine());
+        int length = validationCheckInt();
         System.out.print("Enter number of chapters: ");
-        int chapters = Integer.parseInt(scanner.nextLine());
+        int chapters = validationCheckInt();
 
-        boolean result = saveTitle(new sk.itvkurze.Lekcia_16.DVD(author, name, length, chapters, copies));
+        boolean result = saveTitle(new DVD(author, name, length, chapters, copies));
         if (result) {
             System.out.println("Dvd added succesfully..." + lineSeparator + "Press enter to continue...");
             scanner.nextLine();
@@ -242,4 +230,36 @@ public class TitlesPage {
     }
 
 
+    // pridal som 3 metody na validaciu vstupu
+    public String validationCheckString() {
+        String input = scanner.nextLine();
+        try {
+            Integer.parseInt(input);
+            System.out.println("Please enter a valid value.");
+            return validationCheckString();
+        } catch (NumberFormatException e) {
+            return input;
+        }
+    }
+
+    public int validationCheckInt() {
+        String input = scanner.nextLine();
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid value.");
+            return validationCheckInt();
+        }
+    }
+
+    public String validationCheckISBN() {
+        String input = scanner.nextLine();
+        try {
+            Long.parseLong(input);
+            return input;
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid value.");
+            return validationCheckISBN();
+        }
+    }
 }

@@ -95,18 +95,6 @@ public class TitlesPage {
         }
     }
 
-    /*
-    private int displayTitleWithNumber(Object title, int startingNumber) {
-        if (title instanceof Book) {
-            Book book = (Book) title;
-            System.out.println(startingNumber + ". Name: " + book.getTitle() + " - Author: " + book.getAuthorName() + " | ISBN: " + book.getIsbn() + " | Number of pages: " + book.getPageCount() + " | Available copies: " + book.getAvailableCopies());
-        } else if (title instanceof DVD) {
-            DVD dvd = (DVD) title;
-            System.out.println(startingNumber + ". Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
-        }
-    }
-     */
-
     public void showAllTitles() {
         System.out.println("All Titles:");
 
@@ -114,7 +102,7 @@ public class TitlesPage {
             System.out.println("Name: " + book.getTitle() + " - Author: " + book.getAuthorName() + " | ISBN: " + book.getIsbn() + " | Number of pages: " + book.getPageCount() + " | Available copies: " + book.getAvailableCopies());
         }
         for (DVD dvd : dvds) {
-            System.out.println("Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " - Available copies: " + dvd.getAvailableCopies());;
+            System.out.println("Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " - Available copies: " + dvd.getAvailableCopies());
         }
 
         System.out.println("Total number of all titles: " + totalTitlesCount);
