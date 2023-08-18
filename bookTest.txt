@@ -1,10 +1,10 @@
-1,Maria Antoneta,Jakub Pele,1234567890123,234,10
-2,Odviate Vetrom,Palko Slpeuch,1203948576354,560,0
-3,Starec a more,Ernest Hemingway,8763847567123,245,10
-4,Tik Tak,Veverka Jozef,8739288837489,56,10
-5,Harper Lee,To Kill a Mockingbird,5905746069865,250,20
-6,Jozef Mak,Sto rokov samoty,5905746069865,250,20
-7,Karel Jaromir Erben,Kytice,5905746069869,259,20
-8,Tomáš Janovic,Do konca vekov,5905746066868,159,15
-9,Jozef Gregor Tajovský,Statky Zmatky,9525746069865,550,20
-10,Robert Kiyosaki,Bogaty otec chudy otec,5905787069865,950,30
+Maria Antoneta,Jakub Pele,1234567890123,234,10
+Odviate Vetrom,Palko Slpeuch,1203948576354,560,0
+Starec a more,Ernest Hemingway,8763847567123,245,10
+Tik Tak,Veverka Jozef,8739288837489,56,10
+Harper Lee,To Kill a Mockingbird,5905746069865,250,20
+Jozef Mak,Sto rokov samoty,5905746069865,250,20
+Karel Jaromir Erben,Kytice,5905746069869,259,20
+Tomáš Janovic,Do konca vekov,5905746066868,159,15
+Jozef Gregor Tajovský,Statky Zmatky,9525746069865,550,20
+Robert Kiyosaki,Bogaty otec chudy otec,5905787069865,950,30

@@ -1,10 +1,10 @@
-11,E.T.,Spielberg,7,99,0
-12,Luca,Enrico Casarosa,6,110,5
-13,The Mule,Clint Eastwood,6,115,5
-14,Spielberg,E.T.,7,99,1
-15,Matrix,Wachowski Brothers,8,136,2
-16,Forrest Gump,Robert Zemeckis,8,142,3
-17,Gladiator,Ridley Scott,7,155,4
-18,Schindlerov zoznam,Steven Spielberg,9,195,2
-19,Pulp Fiction,Quentin Tarantino,8,154,3
-20,Shawshank Redemption,Frank Darabont,9,142,1
+E.T.,Spielberg,7,99,0
+Luca,Enrico Casarosa,6,110,5
+The Mule,Clint Eastwood,6,115,5
+Spielberg,E.T.,7,99,1
+Matrix,Wachowski Brothers,8,136,2
+Forrest Gump,Robert Zemeckis,8,142,3
+Gladiator,Ridley Scott,7,155,4
+Schindlerov zoznam,Steven Spielberg,9,195,2
+Pulp Fiction,Quentin Tarantino,8,154,3
+Shawshank Redemption,Frank Darabont,9,142,1
