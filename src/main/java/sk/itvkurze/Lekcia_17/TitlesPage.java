@@ -230,58 +230,6 @@ public class TitlesPage {
     }
 
     public void deleteTitle() {
-        int titleNumber = getId();
-
-        try {
-            File titlesFile = new File(bookFilePath);
-            List<String> bookLines = Files.readAllLines(titlesFile.toPath(), StandardCharsets.UTF_8);
-
-            File titlesDVDFile = new File(dvdFilePath);
-            List<String> dvdLines = Files.readAllLines(titlesDVDFile.toPath(), StandardCharsets.UTF_8);
-
-            titleNumber = validateTitleNumber(titleNumber, bookLines, dvdLines);  // validácia čísla titulu
-
-            bookLines = deleteBookTitle(titleNumber, bookLines);  // odstránenie titulu z kníh
-            dvdLines = deleteDvdTitle(titleNumber, bookLines, dvdLines);  // odstránenie titulu z DVD
-
-            Files.write(titlesFile.toPath(), bookLines, StandardCharsets.UTF_8);
-            Files.write(titlesDVDFile.toPath(), dvdLines, StandardCharsets.UTF_8);
-
-            if (titleNumber <= bookLines.size()) {
-                books.remove(titleNumber - 1);
-            } else {
-                dvds.remove(titleNumber - bookLines.size() - 1);
-            }
-
-            totalTitlesCount--;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Časť 1: Overenie platnosti vstupného čísla.
-    public int validateTitleNumber(int titleNumber, List<String> bookLines, List<String> dvdLines) {
-        if (titleNumber < 1 || (titleNumber > bookLines.size() && titleNumber > dvdLines.size() + bookLines.size())) {
-            throw new IllegalArgumentException("Invalid title number.");
-        }
-        return titleNumber;
-    }
-
-    // Časť 2: Odstránenie titulu z kníh.
-    public List<String> deleteBookTitle(int titleNumber, List<String> bookLines) {
-        if (titleNumber <= bookLines.size()) {
-            bookLines.remove(titleNumber - 1);
-        }
-        return bookLines;
-    }
-
-    // Časť 3: Odstránenie titulu z DVD.
-    public List<String> deleteDvdTitle(int titleNumber, List<String> bookLines, List<String> dvdLines) {
-        if (titleNumber > bookLines.size()) {
-            dvdLines.remove(titleNumber - bookLines.size() - 1);
-        }
-        return dvdLines;
     }
 
     public int getId() {

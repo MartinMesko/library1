@@ -5,6 +5,5 @@ NewAuthor,NewTitle,ISBN002,150,5
 NewAuthor,NewTitle,ISBN002,150,5
 NewAuthor,NewTitle,ISBN002,150,5
 NewAuthor,NewTitle,ISBN002,150,5
-Book 1,Author A,1234567890,300,5
 TitleName,AuthorName,ISBN12345,250,5
 NewAuthor,NewTitle,ISBN002,150,5
