@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class TitlesPage {
     private final Scanner scanner;
-    private static final List<Book> books = new ArrayList<>();
-    private static final List<DVD> dvds = new ArrayList<>();
+    public static final List<Book> books = new ArrayList<>();
+    public static final List<DVD> dvds = new ArrayList<>();
     private final String lineSeparator = System.lineSeparator();
     public static int totalTitlesCount = 0;
     public static final String bookFilePath = "titlesBook.txt";
@@ -229,46 +229,65 @@ public class TitlesPage {
         }
     }
 
-    public boolean deleteTitle() {
+    public void deleteTitle() {
         int titleNumber = getId();
 
         try {
             File titlesFile = new File(bookFilePath);
-            List<String> lines = Files.readAllLines(titlesFile.toPath(), StandardCharsets.UTF_8);
+            List<String> bookLines = Files.readAllLines(titlesFile.toPath(), StandardCharsets.UTF_8);
 
             File titlesDVDFile = new File(dvdFilePath);
-            List<String> linesDVD = Files.readAllLines(titlesDVDFile.toPath(), StandardCharsets.UTF_8);
+            List<String> dvdLines = Files.readAllLines(titlesDVDFile.toPath(), StandardCharsets.UTF_8);
 
-            if (titleNumber < 1 || (titleNumber > lines.size() && titleNumber > linesDVD.size() + lines.size())) {
-                return false;
-            }
+            titleNumber = validateTitleNumber(titleNumber, bookLines, dvdLines);  // validácia čísla titulu
 
-            if (titleNumber <= lines.size()) {
-                lines.remove(titleNumber - 1);
-                Files.write(titlesFile.toPath(), lines, StandardCharsets.UTF_8);
-                books.remove(titleNumber - 1);  //
+            bookLines = deleteBookTitle(titleNumber, bookLines);  // odstránenie titulu z kníh
+            dvdLines = deleteDvdTitle(titleNumber, bookLines, dvdLines);  // odstránenie titulu z DVD
+
+            Files.write(titlesFile.toPath(), bookLines, StandardCharsets.UTF_8);
+            Files.write(titlesDVDFile.toPath(), dvdLines, StandardCharsets.UTF_8);
+
+            if (titleNumber <= bookLines.size()) {
+                books.remove(titleNumber - 1);
             } else {
-                linesDVD.remove(titleNumber - lines.size() - 1);
-                Files.write(titlesDVDFile.toPath(), linesDVD, StandardCharsets.UTF_8);
-                dvds.remove(titleNumber - lines.size() - 1);
+                dvds.remove(titleNumber - bookLines.size() - 1);
             }
 
             totalTitlesCount--;
 
-            return true;
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
     }
 
+    // Časť 1: Overenie platnosti vstupného čísla.
+    public int validateTitleNumber(int titleNumber, List<String> bookLines, List<String> dvdLines) {
+        if (titleNumber < 1 || (titleNumber > bookLines.size() && titleNumber > dvdLines.size() + bookLines.size())) {
+            throw new IllegalArgumentException("Invalid title number.");
+        }
+        return titleNumber;
+    }
 
+    // Časť 2: Odstránenie titulu z kníh.
+    public List<String> deleteBookTitle(int titleNumber, List<String> bookLines) {
+        if (titleNumber <= bookLines.size()) {
+            bookLines.remove(titleNumber - 1);
+        }
+        return bookLines;
+    }
+
+    // Časť 3: Odstránenie titulu z DVD.
+    public List<String> deleteDvdTitle(int titleNumber, List<String> bookLines, List<String> dvdLines) {
+        if (titleNumber > bookLines.size()) {
+            dvdLines.remove(titleNumber - bookLines.size() - 1);
+        }
+        return dvdLines;
+    }
 
     public int getId() {
         System.out.print("Enter the number of the title: ");
         int titleNumber = scanner.nextInt();
         scanner.nextLine();
-
         return titleNumber;
     }
 
