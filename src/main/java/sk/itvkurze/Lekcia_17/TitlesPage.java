@@ -288,7 +288,7 @@ public class TitlesPage {
             titleCounter = displayTitleWithNumber(dvd, titleCounter);
         }
 
-        System.out.println("Celkový počet všetkých titulov: " + totalTitlesCount);
+        System.out.println("Total number of all titles: " + totalTitlesCount);
     }
 
 
