@@ -278,7 +278,7 @@ public class TitlesPage {
     }
 
     public void showAllTitlesWithoutReturn() {
-        System.out.println("Všetky tituly:");
+        System.out.println("All titles:");
         int titleCounter = 1;
 
         for (Book book : books) {
