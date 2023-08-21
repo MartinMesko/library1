@@ -240,11 +240,11 @@ public class TitlesPage {
             displayTitlesMenu();
             return;
         }
+        System.out.println("Remove Title Page");
         showAllTitlesWithoutReturn();
 
-        System.out.print("Select a title to delete:");
-        int titleNumber = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Select a title to delete: ");
+        int titleNumber = validationChecksTheRemovedNumber();
 
         try {
             File titlesFile = new File(bookFilePath);
@@ -359,6 +359,22 @@ public class TitlesPage {
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid value.");
             return validationCheckISBN();
+        }
+    }
+
+    public int validationChecksTheRemovedNumber() {
+        while (true) {
+            String input = scanner.nextLine();
+            try {
+                int choice = Integer.parseInt(input);
+                if (choice >= 1 && choice <= totalTitlesCount) {
+                    return choice;
+                } else {
+                    System.out.println("Please enter a number in the range from 1 to " + totalTitlesCount);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid value.");
+            }
         }
     }
 }
