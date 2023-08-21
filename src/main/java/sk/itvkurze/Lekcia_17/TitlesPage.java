@@ -328,6 +328,8 @@ public class TitlesPage {
         System.out.println("Going back to main menu...");
     }
 
+
+    // pridal som 3 metody na validaciu vstupu
     public String validationCheckString() {
         String input = scanner.nextLine();
         try {

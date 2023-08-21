@@ -3,6 +3,7 @@ package sk.itvkurze.lekcia_14;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -19,5 +20,10 @@ public class LibraryAppHelper {
     @AfterEach
     public void restoreStreams() {
         System.setOut(System.out);
+    }
+
+    //MM Pomocná metóda pre poskytovanie vstupných dát jednotlivým testom
+    public void provideInput(String data) {
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
     }
 }

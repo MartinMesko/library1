@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 
-// TODO: musíme vymyslieť ešte názvy jednotlivých testov pre anotáciu @DisplayName
-
 class LibraryApp3Test extends LibraryAppHelper{
 
     //MM Testovanie, či výstup zobrazuje správny text pre platný vstup
