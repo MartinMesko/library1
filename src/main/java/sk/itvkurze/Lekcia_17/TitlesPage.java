@@ -158,15 +158,19 @@ public class TitlesPage {
 
     private void addBook() {
         System.out.print("Enter Author's name: ");
-        String author = scanner.nextLine();
+        String author = validationCheckString();
         System.out.print("Enter title name: ");
-        String name = scanner.nextLine();
+        String name = validationCheckString();
         System.out.print("Enter available copies: ");
-        int copies = Integer.parseInt(scanner.nextLine());
+        int copies = validationCheckInt();
         System.out.print("Enter ISBN: ");
-        String isbn = scanner.nextLine();
+        String isbn = validationCheckISBN();                // neviem ci to nechame ako String. Podla mna ISBN by malo byt long.
+                                                            // Ak nechame String tak program vyhodnoti dlhe cislo ako String.
+                                                            // V zneni zadania je ISBN 13 miestne cislo a nezmesti sa do int.
+                                                            // Jediny sposob je zvlast metoda len kvoli ISBN na validaciu tak ako je to teraz.
+                                                            // otazne je ci v dalsich lekciach niekde nebude robit podobny problem.
         System.out.print("Enter number of Pages: ");
-        int pages = Integer.parseInt(scanner.nextLine());
+        int pages = validationCheckInt();
 
 
         boolean result = saveTitle(new Book(author, name, isbn, pages, copies));
@@ -181,15 +185,15 @@ public class TitlesPage {
 
     private void addDVD() {
         System.out.print("Enter Author's name: ");
-        String author = scanner.nextLine();
+        String author = validationCheckString();
         System.out.print("Enter title name: ");
-        String name = scanner.nextLine();
+        String name = validationCheckString();
         System.out.print("Enter available copies: ");
-        int copies = Integer.parseInt(scanner.nextLine());
+        int copies = validationCheckInt();
         System.out.print("Enter Length (minutes): ");
-        int length = Integer.parseInt(scanner.nextLine());
+        int length = validationCheckInt();
         System.out.print("Enter number of chapters: ");
-        int chapters = Integer.parseInt(scanner.nextLine());
+        int chapters = validationCheckInt();
 
         boolean result = saveTitle(new DVD(author, name, length, chapters, copies));
         if (result) {
@@ -285,6 +289,11 @@ public class TitlesPage {
     }
 
     public int getId() {
+        nacitaj(int titleCounter);
+
+
+
+
         System.out.print("Enter the number of the title: ");
         int titleNumber = scanner.nextInt();
         scanner.nextLine();
