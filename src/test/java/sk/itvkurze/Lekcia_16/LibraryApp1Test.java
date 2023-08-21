@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LibraryAppArguTest extends testingValidationHelper{
+public class LibraryApp1Test extends testingValidationHelper{
 
     private TitlesPage titlesPage;
 
