@@ -234,6 +234,12 @@ public class TitlesPage {
     }
 
     public void deleteTitle() {
+        if (totalTitlesCount == 0) {
+            System.out.println("No titles to remove. Press enter to return to titles...");
+            scanner.nextLine();
+            displayTitlesMenu();
+            return;
+        }
         showAllTitlesWithoutReturn();
 
         System.out.print("Select a title to delete:");
