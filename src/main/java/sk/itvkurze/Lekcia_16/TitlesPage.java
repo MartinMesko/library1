@@ -222,9 +222,6 @@ public class TitlesPage {
     private static void deleteTitle() {
 
     }
-
-
-
     private void goBack() {
         System.out.println("Going back to main menu...");
     }
