@@ -234,7 +234,11 @@ public class TitlesPage {
     }
 
     public void deleteTitle() {
-        int titleNumber = getId();
+        showAllTitlesWithoutReturn();
+
+        System.out.print("Select a title to delete:");
+        int titleNumber = scanner.nextInt();
+        scanner.nextLine();
 
         try {
             File titlesFile = new File(bookFilePath);
@@ -258,11 +262,29 @@ public class TitlesPage {
             }
 
             totalTitlesCount--;
+            System.out.println("Title removed successfully!" + lineSeparator + "Press enter to continue...");
+            scanner.nextLine();
+            displayTitlesMenu();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void showAllTitlesWithoutReturn() {
+        System.out.println("Všetky tituly:");
+        int titleCounter = 1;
+
+        for (Book book : books) {
+            titleCounter = displayTitleWithNumber(book, titleCounter);
+        }
+        for (DVD dvd : dvds) {
+            titleCounter = displayTitleWithNumber(dvd, titleCounter);
+        }
+
+        System.out.println("Celkový počet všetkých titulov: " + totalTitlesCount);
+    }
+
 
     //Overenie platnosti vstupného čísla.
     public int validateTitleNumber(int titleNumber, List<String> bookLines, List<String> dvdLines) {
@@ -289,10 +311,6 @@ public class TitlesPage {
     }
 
     public int getId() {
-        nacitaj(int titleCounter);
-
-
-
 
         System.out.print("Enter the number of the title: ");
         int titleNumber = scanner.nextInt();

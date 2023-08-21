@@ -8,3 +8,4 @@ Gabriel García Márquez,Sto rokov samoty,978-0-06-088328-7,417,2
 Fyodor Dostoyevsky,Zločin a trest,978-0-14-044913-6,720,4
 Ernest Hemingway,Starnutie a more,978-0-684-80122-3,127,5
 Jane Austen,Rozum a cit,978-0-14-143966-2,374,2
+John Steinbeck,Hrozby hrozby,978-0-14-017739-8,455,3
