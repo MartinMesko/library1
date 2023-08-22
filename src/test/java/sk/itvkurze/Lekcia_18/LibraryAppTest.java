@@ -18,8 +18,8 @@ class LibraryAppTest {
     @BeforeEach
     void setUp() throws IOException {
         List<String> lines = List.of(
-                "John|Doe|01/01/2000 12:00:00|123456",
-                "Jane|Smith|02/02/2001 13:00:00|654321"
+                "John|Doe|01/01/2000|123456",
+                "Jane|Smith|02/02/2001|654321"
         );
         Files.write(Paths.get(TEST_FILE_PATH), lines);
     }
