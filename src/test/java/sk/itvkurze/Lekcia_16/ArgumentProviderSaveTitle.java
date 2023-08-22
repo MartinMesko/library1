@@ -10,6 +10,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class ArgumentProviderSaveTitle implements ArgumentsProvider {
 
+    // vytvara objekty ako argumenty do testovacej metody
     @Override
     public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         return Stream.of(

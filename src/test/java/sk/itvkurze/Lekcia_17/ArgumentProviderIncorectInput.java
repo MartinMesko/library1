@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class ArgumentProviderIncorectInput implements ArgumentsProvider {
+
+    // vytvara objekty ako argumenty do testovacej metody
     @Override
     public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         int expected = 3;

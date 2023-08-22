@@ -11,6 +11,7 @@ public class LibraryAppHelper {
     public final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     public String lineSeparator = System.getProperty("line.separator");
 
+    // pred kazdym testom nastavuje novy vystupmy prud
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));

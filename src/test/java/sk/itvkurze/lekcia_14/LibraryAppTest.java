@@ -22,6 +22,7 @@ class LibraryAppTest {
     private final PrintStream originalOut = System.out;
 
 
+    // pred kazdym testom nastavuje novy vystupmy prud
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));

@@ -10,14 +10,16 @@ public class LibraryApp1Test extends testingValidationHelper{
 
     private TitlesPage titlesPage;
 
+    // pred kazdym testom vytvara novy objekt triedy titlesPage
     @BeforeEach
     public void setUp() {
         titlesPage = new TitlesPage();
     }
 
+    // uklada argument (objekt) pomocou testovanej tiredy a vysledok porovna s ocakavanou hodnotou
     @ParameterizedTest
     @ArgumentsSource(ArgumentProviderSaveTitle.class)
-    public void testSaveDVDSuccessfully(Object object, boolean expected){
+    public void testSaveSuccessfully(Object object, boolean expected){
         boolean actual = titlesPage.saveTitle(object);
         assertEquals(expected, actual);
     }

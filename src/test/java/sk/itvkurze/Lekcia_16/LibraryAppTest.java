@@ -13,11 +13,13 @@ public class LibraryAppTest {
 
     private TitlesPage titlesPage;
 
+    // pred kazdym testom vytvara novy objekt triedy titlesPage
     @BeforeEach
     public void setUp() {
         titlesPage = new TitlesPage();
     }
 
+    // uklada objekt triedy Book pomocou metody saveTitle() a vysledok porovna s ocakavanou hodnotou
     @Test
     public void testSaveBookSuccessfully() {
         Book newBook = new Book("NewTitle", "NewAuthor", "ISBN002", 150, 5);
@@ -27,6 +29,7 @@ public class LibraryAppTest {
 
     }
 
+    // uklada objekt triedy DVD pomocou metody saveTitle() a vysledok porovna s ocakavanou hodnotou
     @Test
     public void testSaveDVDSuccessfully() {
         DVD newDVD = new DVD("NewTitle", "NewAuthor", 7, 120, 3);
@@ -36,7 +39,7 @@ public class LibraryAppTest {
 
     }
 
-    // testy true / false na validationCheckString()
+    // test na validaciu retazca z vysledkom metody - true
     @Test
     public void testingValidationStringTrue() {
         String input = "titles";
@@ -44,6 +47,8 @@ public class LibraryAppTest {
 
         assertEquals("titles", actual);
     }
+
+    // test na validaciu retazca z vysledkom metody - false, potom true
     @Test
     public void testingValidationStringFalse() {
         String input = "666\ntitles\n";
@@ -52,6 +57,7 @@ public class LibraryAppTest {
         assertEquals("titles", actual);
     }
 
+    // pomocna metoda na simulaciu vstupu
     private static String getString(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -61,7 +67,7 @@ public class LibraryAppTest {
     }
 
 
-    // testy true / false na validationCheckInt()
+    // test na validaciu celeho cisla z vysledkom metody - true
     @Test
     public void testingValidationIntTrue() {
         String input = "666\n";
@@ -70,6 +76,7 @@ public class LibraryAppTest {
         assertEquals(666, actual);
     }
 
+    // test na validaciu celeho cisla z vysledkom metody - false, potom true
     @Test
     public void testingValidationIntFalse() {
         String input = "titles\n666\n";
@@ -78,6 +85,7 @@ public class LibraryAppTest {
         assertEquals(666, actual);
     }
 
+    // pomocna metoda na simulaciu vstupu
     private static int getInt(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -86,23 +94,28 @@ public class LibraryAppTest {
         return titlesPage.validationCheckInt();
     }
 
-    // testy true / false na validationCheckISBN()
+    // test na validaciu retazca preparsuje vstup na long z vysledkom metody - true
     @Test
     public void testingValidationISBNTrue() {
         String input = "1234567891234\n";
-        String actual = getISBN(input);
 
-        assertEquals("1234567891234", actual);
+        long actual = Long.parseLong(getISBN(input));
+        long expected = Long.parseLong("1234567891234");
+
+        assertEquals(expected, actual);
     }
 
+    // test na validaciu retazca preparsuje vstup na long z vysledkom metody - false, potom true
     @Test
     public void testingValidationISBNFalse() {
         String input = "titles\n1234567891234\n";
-        String actual = getISBN(input);
+        long actual = Long.parseLong(getISBN(input));
+        long expected = Long.parseLong("1234567891234");
 
-        assertEquals("1234567891234", actual);
+        assertEquals(expected, actual);
     }
 
+    // pomocna metoda na simulaciu vstupu
     private static String getISBN(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);

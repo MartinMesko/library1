@@ -35,12 +35,16 @@ public class LibraryAppTest {
         assertFalse(updatedBooks.contains("Book1"));
     }
 
+    // test na validaciu
     @ParameterizedTest
     @ArgumentsSource(ArgumentProviderIncorectInput.class)
     void testValidationChecksTheRemovedNumberIsIncorect(String input, int expected, int rangeTo){
+        // simuluje vstup
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
+        // vytvara novy objekt
         TitlesPage titlesPage = new TitlesPage();
+        // nastavuje hornu hranicu rozsahu
         TitlesPage.totalTitlesCount = rangeTo;
         int actual = titlesPage.validationChecksTheRemovedNumber();
         assertEquals(expected, actual);
