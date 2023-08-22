@@ -39,14 +39,12 @@ public class MembersPage {
 
                 try {
                     if (parts.length >= 3) {
-                        members.add(new Member(parts[0].trim(), parts[1].trim(), new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(parts[2].trim()), Integer.parseInt(parts[3].trim())));
+                        members.add(new Member(parts[0].trim(), parts[1].trim(), parts[2].trim(), Integer.parseInt(parts[3].trim()))); // Adjusted here. No need for SimpleDateFormat anymore
 
                         addedMembersCount++;
                     }
                 } catch (NumberFormatException e) {
                     System.err.println("Error parsing number from line: " + line);
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
                 }
             }
         } finally {

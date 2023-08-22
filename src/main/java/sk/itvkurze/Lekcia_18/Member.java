@@ -1,23 +1,19 @@
 package sk.itvkurze.Lekcia_18;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Member {
     private String name;
     private String surname;
-
-    private Date dateOfBirth;
+    private String dateOfBirth;  // Zmena typu z Date na String
     private int personalId;
     private List<String> rentedTitles;
 
-    public Member(String name, String surname, Date dateOfBirth, int personalId) {
+    public Member(String name, String surname, String dateOfBirth, int personalId) {  // Zmena typu parametra z Date na String
         this.name = name;
         this.surname = surname;
-
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth;  // Zmena typu z Date na String
         this.personalId = personalId;
         this.rentedTitles = new ArrayList<>();
     }
@@ -30,9 +26,7 @@ public class Member {
         return surname;
     }
 
-
-
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {  // Zmena typu z Date na String
         return dateOfBirth;
     }
 
@@ -54,9 +48,6 @@ public class Member {
 
     @Override
     public String toString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String dateString = dateFormat.format(dateOfBirth);
-
-        return name + " " + surname + " | Date of Birth: " + dateString + " - Personal Id: " + personalId;
+        return name + " " + surname + " | Date of Birth: " + dateOfBirth + " - Personal Id: " + personalId;  // Priamo pridáme dateOfBirth, pretože už je to String
     }
 }
