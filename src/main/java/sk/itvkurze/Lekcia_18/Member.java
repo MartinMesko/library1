@@ -6,14 +6,14 @@ import java.util.List;
 public class Member {
     private String name;
     private String surname;
-    private String dateOfBirth;  // Zmena typu z Date na String
+    private String dateOfBirth;
     private int personalId;
     private List<String> rentedTitles;
 
-    public Member(String name, String surname, String dateOfBirth, int personalId) {  // Zmena typu parametra z Date na String
+    public Member(String name, String surname, String dateOfBirth, int personalId) {
         this.name = name;
         this.surname = surname;
-        this.dateOfBirth = dateOfBirth;  // Zmena typu z Date na String
+        this.dateOfBirth = dateOfBirth;
         this.personalId = personalId;
         this.rentedTitles = new ArrayList<>();
     }
@@ -26,7 +26,7 @@ public class Member {
         return surname;
     }
 
-    public String getDateOfBirth() {  // Zmena typu z Date na String
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -36,6 +36,8 @@ public class Member {
 
     @Override
     public String toString() {
-        return name + " " + surname + " | Date of Birth: " + dateOfBirth + " - Personal Id: " + personalId;  // Priamo pridáme dateOfBirth, pretože už je to String
+        return name + " " + surname + " | Date of Birth: " + dateOfBirth + " - Personal Id: " + personalId;
     }
+
+
 }

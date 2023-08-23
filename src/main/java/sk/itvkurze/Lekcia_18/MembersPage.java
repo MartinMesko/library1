@@ -39,7 +39,7 @@ public class MembersPage {
 
                 try {
                     if (parts.length >= 3) {
-                        members.add(new Member(parts[0].trim(), parts[1].trim(), parts[2].trim(), Integer.parseInt(parts[3].trim()))); // Adjusted here. No need for SimpleDateFormat anymore
+                        members.add(new Member(parts[0].trim(), parts[1].trim(), parts[2].trim(), Integer.parseInt(parts[3].trim())));
 
                         addedMembersCount++;
                     }
@@ -99,8 +99,7 @@ public class MembersPage {
         int memberCounter = 1;
 
         for (Member member : members) {
-            System.out.println(memberCounter + ". " + member.getName() + " " + member.getSurname() + " - Date of Birth: " + member.getDateOfBirth() + " - Personal ID: " + member.getPersonalId());
-
+            System.out.println(memberCounter + ". " + member);
             memberCounter++;
         }
 
@@ -109,6 +108,7 @@ public class MembersPage {
         scanner.nextLine();
         displayMembersMenu();
     }
+
 
     public void addMember() {
         System.out.println("Add a new member");
