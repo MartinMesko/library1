@@ -17,22 +17,6 @@ public class Member {
 
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public int getPersonalId() {
-        return personalId;
-    }
-
     @Override
     public String toString() {
         return name + " " + surname + " | Date of Birth: " + dateOfBirth + " - Personal Id: " + personalId;
