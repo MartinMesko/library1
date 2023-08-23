@@ -165,10 +165,10 @@ public class TitlesPage {
         int copies = validationCheckInt();
         System.out.print("Enter ISBN: ");
         String isbn = validationCheckISBN();                // neviem ci to nechame ako String. Podla mna ISBN by malo byt long.
-        // Ak nechame String tak program vyhodnoti dlhe cislo ako String.
-        // V zneni zadania je ISBN 13 miestne cislo a nezmesti sa do int.
-        // Jediny sposob je zvlast metoda len kvoli ISBN na validaciu tak ako je to teraz.
-        // otazne je ci v dalsich lekciach niekde nebude robit podobny problem.
+                                                            // Ak nechame String tak program vyhodnoti dlhe cislo ako String.
+                                                            // V zneni zadania je ISBN 13 miestne cislo a nezmesti sa do int.
+                                                            // Jediny sposob je zvlast metoda len kvoli ISBN na validaciu tak ako je to teraz.
+                                                            // otazne je ci v dalsich lekciach niekde nebude robit podobny problem.
         System.out.print("Enter number of Pages: ");
         int pages = validationCheckInt();
 
@@ -240,11 +240,11 @@ public class TitlesPage {
             displayTitlesMenu();
             return;
         }
+        System.out.println("Remove Title Page");
         showAllTitlesWithoutReturn();
 
-        System.out.print("Select a title to delete:");
-        int titleNumber = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Select a title to delete: ");
+        int titleNumber = validationChecksTheRemovedNumber();
 
         try {
             File titlesFile = new File(bookFilePath);
@@ -278,7 +278,7 @@ public class TitlesPage {
     }
 
     public void showAllTitlesWithoutReturn() {
-        System.out.println("Všetky tituly:");
+        System.out.println("All titles:");
         int titleCounter = 1;
 
         for (Book book : books) {
@@ -288,7 +288,7 @@ public class TitlesPage {
             titleCounter = displayTitleWithNumber(dvd, titleCounter);
         }
 
-        System.out.println("Celkový počet všetkých titulov: " + totalTitlesCount);
+        System.out.println("Total number of all titles: " + totalTitlesCount);
     }
 
 
@@ -316,18 +316,12 @@ public class TitlesPage {
         return dvdLines;
     }
 
-    public int getId() {
-
-        System.out.print("Enter the number of the title: ");
-        int titleNumber = scanner.nextInt();
-        scanner.nextLine();
-        return titleNumber;
-    }
-
     private void goBack() {
         System.out.println("Going back to main menu...");
     }
 
+
+    // pridal som 3 metody na validaciu vstupu
     public String validationCheckString() {
         String input = scanner.nextLine();
         try {
@@ -357,6 +351,22 @@ public class TitlesPage {
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid value.");
             return validationCheckISBN();
+        }
+    }
+
+    public int validationChecksTheRemovedNumber() {
+        while (true) {
+            String input = scanner.nextLine();
+            try {
+                int choice = Integer.parseInt(input);
+                if (choice >= 1 && choice <= totalTitlesCount) {
+                    return choice;
+                } else {
+                    System.out.println("Please enter a number in the range from 1 to " + totalTitlesCount);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid value.");
+            }
         }
     }
 }

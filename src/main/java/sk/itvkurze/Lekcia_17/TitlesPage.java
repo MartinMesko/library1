@@ -316,14 +316,6 @@ public class TitlesPage {
         return dvdLines;
     }
 
-    public int getId() {
-
-        System.out.print("Enter the number of the title: ");
-        int titleNumber = scanner.nextInt();
-        scanner.nextLine();
-        return titleNumber;
-    }
-
     private void goBack() {
         System.out.println("Going back to main menu...");
     }
