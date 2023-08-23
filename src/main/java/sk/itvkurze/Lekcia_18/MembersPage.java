@@ -35,12 +35,11 @@ public class MembersPage {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\|");
+                String[] parts = line.split(",");
 
                 try {
                     if (parts.length >= 3) {
                         members.add(new Member(parts[0].trim(), parts[1].trim(), parts[2].trim(), Integer.parseInt(parts[3].trim())));
-
                         addedMembersCount++;
                     }
                 } catch (NumberFormatException e) {

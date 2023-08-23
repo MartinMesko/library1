@@ -8,14 +8,13 @@ public class Member {
     private String surname;
     private String dateOfBirth;
     private int personalId;
-    private List<String> rentedTitles;
 
     public Member(String name, String surname, String dateOfBirth, int personalId) {
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
         this.personalId = personalId;
-        this.rentedTitles = new ArrayList<>();
+
     }
 
     public String getName() {
