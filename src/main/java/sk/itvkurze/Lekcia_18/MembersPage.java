@@ -21,10 +21,6 @@ public class MembersPage {
         loadMembers();
     }
 
-    public MembersPage() {
-        this.scanner = new Scanner(System.in);
-        loadMembers();
-    }
 
     public static int loadMembersFromFile(String filePath) throws IOException {
         int addedMembersCount = 0;
