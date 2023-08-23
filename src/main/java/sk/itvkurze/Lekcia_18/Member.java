@@ -1,8 +1,5 @@
 package sk.itvkurze.Lekcia_18;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Member {
     private String name;
     private String surname;
