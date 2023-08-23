@@ -99,7 +99,7 @@ public class MembersPage {
         int memberCounter = 1;
 
         for (Member member : members) {
-            System.out.println(memberCounter + ". Name: " + member.getName() + " - Surname: " + member.getSurname() + " - Date of Birth: " + member.getDateOfBirth() + " - Personal ID: " + member.getPersonalId());
+            System.out.println(memberCounter + ". " + member.getName() + " " + member.getSurname() + " - Date of Birth: " + member.getDateOfBirth() + " - Personal ID: " + member.getPersonalId());
 
             memberCounter++;
         }
@@ -115,38 +115,11 @@ public class MembersPage {
 
     }
 
-    public boolean saveMember(Member member) {
-
-        return false;
-    }
-
     public void deleteMember() {
 
     }
 
     private void goBack() {
         System.out.println("Going back to main menu...");
-    }
-
-
-    public String validationCheckString() {
-        String input = scanner.nextLine();
-        try {
-            Integer.parseInt(input);
-            System.out.println("Please enter a valid value.");
-            return validationCheckString();
-        } catch (NumberFormatException e) {
-            return input;
-        }
-    }
-
-    public int validationCheckInt() {
-        String input = scanner.nextLine();
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid value.");
-            return validationCheckInt();
-        }
     }
 }

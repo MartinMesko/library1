@@ -34,18 +34,6 @@ public class Member {
         return personalId;
     }
 
-    public List<String> getRentedTitles() {
-        return rentedTitles;
-    }
-
-    public void rentTitle(String title) {
-        rentedTitles.add(title);
-    }
-
-    public void returnTitle(String title) {
-        rentedTitles.remove(title);
-    }
-
     @Override
     public String toString() {
         return name + " " + surname + " | Date of Birth: " + dateOfBirth + " - Personal Id: " + personalId;  // Priamo pridáme dateOfBirth, pretože už je to String
