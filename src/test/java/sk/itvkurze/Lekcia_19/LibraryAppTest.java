@@ -19,12 +19,14 @@ public class LibraryAppTest {
         MembersPage.members.clear();
     }
 
+    // Testuje, či po pridaní člena je tento člen skutočne v zozname.
     @Test
     public void whenMemberIsAddedThenMemberExistsInList() {
         membersPage.saveMember(member1);
         assertTrue(MembersPage.members.contains(member1));
     }
 
+    // Testuje, či po odstránení člena zo zoznamu, tento člen už v zozname nie je.
     @Test
     public void whenMemberIsRemovedThenMemberDoesNotExistInList() {
         MembersPage.members.add(member1);
