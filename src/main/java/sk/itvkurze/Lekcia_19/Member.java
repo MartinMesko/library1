@@ -9,7 +9,6 @@ public class Member {
     private String dateOfBirth;
     private int personalId;
 
-
     public Member(String name, String surname, String dateOfBirth, int personalId) {
         this.name = name;
         this.surname = surname;

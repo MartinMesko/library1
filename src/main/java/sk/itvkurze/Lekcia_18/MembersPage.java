@@ -17,6 +17,13 @@ public class MembersPage {
         loadMembers();
     }
 
+    public void loadMembers() {
+        try {
+            totalMembersCount += loadMembersFromFile(memberFilePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static int loadMembersFromFile(String filePath) throws IOException {
         int addedMembersCount = 0;
@@ -45,14 +52,6 @@ public class MembersPage {
         }
         totalMembersCount += addedMembersCount;
         return addedMembersCount;
-    }
-
-    public void loadMembers() {
-        try {
-            totalMembersCount += loadMembersFromFile(memberFilePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void displayMembersMenu() {
