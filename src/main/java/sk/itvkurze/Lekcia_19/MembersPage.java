@@ -3,11 +3,13 @@ package sk.itvkurze.Lekcia_19;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.*;
 
 public class MembersPage {
     private final Scanner scanner;
@@ -114,8 +116,8 @@ public class MembersPage {
         String name = validationCheckString();
         System.out.print("Enter member's last name: ");
         String surname = validationCheckString();
-        System.out.print("Enter Member's date of birth (dd/MM/yyyy): ");
-        String dateOfBirth = validateDateOfBirthInput(scanner.nextLine());
+        System.out.print("Enter Member's date of birth (dd.mm.yyyy): ");
+        String dateOfBirth = validateDateOfBirthInput();
         System.out.print("Enter Member's personal id: ");
         int personalId = validationCheckInt();
 
@@ -236,24 +238,15 @@ public class MembersPage {
         }
     }
 
-    private String validateDateOfBirthInput(String inputDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setLenient(false);
-
-        if (inputDate.contains(".")) {
-            System.out.println("Please use format dd/MM/yyyy.");
-            System.out.print("Enter Member's date of birth (dd/MM/yyyy): ");
-            return validateDateOfBirthInput(scanner.nextLine());
-        }
-
+    private String validateDateOfBirthInput() {
+        String userInput = scanner.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         try {
-            Date date = sdf.parse(inputDate);
-            return sdf.format(date);
-        } catch (Exception e) {
+            LocalDate.parse(userInput, formatter);
+            return userInput;
+        } catch (DateTimeParseException e) {
             System.out.println("Please enter a valid value.");
-            System.out.print("Enter Member's date of birth (dd/MM/yyyy): ");
-            return validateDateOfBirthInput(scanner.nextLine());
+            return validateDateOfBirthInput();
         }
-
     }
 }
