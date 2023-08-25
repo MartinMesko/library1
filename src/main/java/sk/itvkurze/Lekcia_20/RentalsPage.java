@@ -10,9 +10,19 @@ import java.util.List;
 public class RentalsPage {
     private final Scanner scanner;
     private final String lineSeparator = System.lineSeparator();
+    private final MembersPage membersPage;
+    private final TitlesPage titlesPage;
+
+    public RentalsPage(Scanner scanner, MembersPage membersPage, TitlesPage titlesPage) {
+        this.scanner = scanner;
+        this.membersPage = membersPage;
+        this.titlesPage = titlesPage;
+    }
 
     public RentalsPage(Scanner scanner) {
         this.scanner = scanner;
+        this.membersPage = new MembersPage(scanner);
+        this.titlesPage = new TitlesPage(scanner);
     }
 
     public void displayRentalsMemu() {
@@ -45,7 +55,7 @@ public class RentalsPage {
         switch (choice) {
             case 1 -> {
                 scanner.nextLine();
-                showMembers();
+                rentTitle();
             }
             case 2 -> {
                 scanner.nextLine();
@@ -75,41 +85,34 @@ public class RentalsPage {
         }
 
     }
-    private void showMembers() {
+    private void rentTitle() {
+        System.out.println("Choose a member to rent a title:");
 
 
-        MembersPage membersPage = new MembersPage(scanner);
-        List<Member> members = membersPage.getMembers();
+        membersPage.showAllMembersWithoutReturn();
+
+        System.out.print("Enter member number to select: ");
+        int memberNumber = membersPage.validationCheckInt();
+
+        if (memberNumber > 0 && memberNumber <= MembersPage.totalMembersCount) {
+            Member selectedMember = MembersPage.members.get(memberNumber - 1);
+            System.out.println("Selected member: " + selectedMember);
 
 
-        if (members.isEmpty()) {
-            System.out.println("List of all library members:");
-            System.out.println("Member list is empty.");
-            displayRentalsMemu();
-            return;
+            System.out.println("Available titles for rent:");
+            List<Object> availableTitles = titlesPage.getAllAvailableTitles();
+            for (Object title : availableTitles) {
+                System.out.println(title);
+            }
+
+        } else {
+            System.out.println("Invalid member selection.");
         }
-
-        System.out.println("List of all library members:");
-        for(Member member : members) {
-            System.out.println(member);
-        }
-
-        System.out.print("Choose a member to rent to: ");
-        int memberChoice = scanner.nextInt();
-
-        if (memberChoice < 1 || memberChoice > members.size()) {
-            System.out.println("Invalid member choice.");
-            displayRentalsMemu();
-            return;
-        }
-        //Member selectedMember = members.get(memberChoice - 1);
-
-
-
+        displayRentalsMemu();
     }
     public int getAvailableCopies(int titleId) {
         int availableCopies = 0;
-        try (Scanner scanner = new Scanner(new FileReader("titles.txt"))) {
+        try (Scanner scanner = new Scanner(new FileReader("titlesBook.txt"))) {
             int indexer = 1;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();

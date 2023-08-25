@@ -324,6 +324,21 @@ public class TitlesPage {
         return titleNumber;
     }
 
+    public List<Object> getAllAvailableTitles() {
+        List<Object> availableTitles = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getAvailableCopies() > 0) {
+                availableTitles.add(book);
+            }
+        }
+        for (DVD dvd : dvds) {
+            if (dvd.getAvailableCopies() > 0) {
+                availableTitles.add(dvd);
+            }
+        }
+        return availableTitles;
+    }
+
     private void goBack() {
         System.out.println("Going back to main menu...");
     }
