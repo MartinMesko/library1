@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class MembersPage {
     private final Scanner scanner;
     public static final List<Member> members = new ArrayList<>();
-    private final String lineSeparator = System.lineSeparator();
+    private static final String lineSeparator = System.lineSeparator();
     public static int totalMembersCount = 0;
     public static final String memberFilePath = "members.txt";
 

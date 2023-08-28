@@ -1,14 +1,10 @@
 package sk.itvkurze.Lekcia_20;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Member {
     private String name;
     private String surname;
     private String dateOfBirth;
     private int personalId;
-
 
     public Member(String name, String surname, String dateOfBirth, int personalId) {
         this.name = name;

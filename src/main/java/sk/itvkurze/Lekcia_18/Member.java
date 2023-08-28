@@ -14,6 +14,13 @@ public class Member {
 
     }
 
+    public Member() {
+        this.name = "";
+        this.surname = "";
+        this.dateOfBirth = "";
+        this.personalId = 0;
+    }
+
     public String getName() {
         return name;
     }

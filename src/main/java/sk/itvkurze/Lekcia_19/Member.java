@@ -1,8 +1,5 @@
 package sk.itvkurze.Lekcia_19;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Member {
     private String name;
     private String surname;
@@ -15,6 +12,13 @@ public class Member {
         this.dateOfBirth = dateOfBirth;
         this.personalId = personalId;
 
+    }
+
+    public Member() {
+        this.name = "";
+        this.surname = "";
+        this.dateOfBirth = "";
+        this.personalId = 0;
     }
 
     public String getName() {
