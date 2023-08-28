@@ -1,13 +1,15 @@
 package sk.itvkurze.Lekcia_19;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import java.util.Arrays;
 
-public class LibraryAppTest {
+import static org.junit.jupiter.api.Assertions.*;
 
+public class LibraryAppTest extends LibraryAppHelper{
+
+    /*
     private MembersPage membersPage;
     private Member member1, member2;
 
@@ -37,5 +39,28 @@ public class LibraryAppTest {
         assertFalse(MembersPage.members.contains(member1));
         assertTrue(MembersPage.members.contains(member2));
     }
+     */
 
+    // test ci metoda saveMember() realne ulozi noveho member do databazi (txt suboru)
+    @ParameterizedTest
+    @ArgumentsSource(ArgumentProviderAddMember.class)
+    void whenMemberIsAddedThenMemberExistsInFile(Member member, String searchedText){
+        boolean actual = MembersPage.saveMember(member);
+        boolean expected = searchInFile(MembersPage.memberFilePath, searchedText);
+        assertEquals(expected, actual);
+    }
+
+    // test TREBA PREROBIT!!! momentalne testuje len existenciu pola members.
+    // Metody add() a remove() su sucastou kniznice java.util.
+    // To iste plati Mato aj pre tvoju povodnu verziu.
+    @ParameterizedTest
+    @ArgumentsSource(ArgumentProviderRemoveMember.class)
+    public void whenMemberIsRemovedThenMemberDoesNotExistInList(Member member, boolean expected) {
+        MembersPage.members.add(member);
+        if (expected){
+            MembersPage.members.remove(member);
+        }
+        boolean actual = MembersPage.members.contains(member);
+        assertEquals(!expected, actual);
+    }
 }

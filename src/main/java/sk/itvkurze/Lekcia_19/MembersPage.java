@@ -3,9 +3,6 @@ package sk.itvkurze.Lekcia_19;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -14,7 +11,7 @@ import java.util.*;
 public class MembersPage {
     private final Scanner scanner;
     public static final List<Member> members = new ArrayList<>();
-    private final String lineSeparator = System.lineSeparator();
+    private static final String lineSeparator = System.lineSeparator();
     public static int totalMembersCount = 0;
     public static final String memberFilePath = "members.txt";
 
@@ -111,7 +108,7 @@ public class MembersPage {
     }
 
     public void addMember() {
-        System.out.println("Add member page");
+        System.out.println("Add a new member");
         System.out.print("Enter member's first name: ");
         String name = validationCheckString();
         System.out.print("Enter member's last name: ");
@@ -131,7 +128,7 @@ public class MembersPage {
         }
     }
 
-    public boolean saveMember(Member member) {
+    public static boolean saveMember(Member member) {
         try {
             String memberString = member.getName() + "," + member.getSurname() + "," + member.getDateOfBirth() + "," + member.getPersonalId();
 
@@ -161,7 +158,9 @@ public class MembersPage {
         showAllMembersWithoutReturn();
         System.out.println("Choose an option:");
 
+        int memberNumber = validationChecksTheRemovedMember();
 
+        /*
         int memberNumber;
         try {
             memberNumber = validationCheckInt();
@@ -175,6 +174,7 @@ public class MembersPage {
             deleteMember();
             return;
         }
+         */
 
         try {
             File membersFile = new File(memberFilePath);
@@ -247,6 +247,22 @@ public class MembersPage {
         } catch (DateTimeParseException e) {
             System.out.println("Please enter a valid value.");
             return validateDateOfBirthInput();
+        }
+    }
+
+    public int validationChecksTheRemovedMember() {
+        String input = scanner.nextLine();
+        try {
+            int choice = Integer.parseInt(input);
+            if (choice >= 1 && choice <= totalMembersCount) {
+                return choice;
+            } else {
+                System.out.println("Please enter a number in the range from 1 to " + totalMembersCount);
+                return validationChecksTheRemovedMember();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid value.");
+            return validationChecksTheRemovedMember();
         }
     }
 }
