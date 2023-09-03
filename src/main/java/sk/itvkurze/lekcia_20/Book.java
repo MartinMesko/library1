@@ -1,4 +1,4 @@
-package sk.itvkurze.Lekcia_20;
+package sk.itvkurze.lekcia_20;
 
 public class Book {
     private String authorName;
@@ -7,7 +7,6 @@ public class Book {
     private String isbn;
     private int availableCopies;
 
-
     // konštruktor
     public Book(String title, String authorName, String isbn,int pageCount, int availableCopies) {
         this.authorName = authorName;
@@ -15,7 +14,6 @@ public class Book {
         this.pageCount = pageCount;
         this.isbn = isbn;
         this.availableCopies = availableCopies;
-
     }
 
     // getter a setter metódy
@@ -59,5 +57,12 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
-
+    @Override
+    public String toString() {
+        return ". Name: " + title +
+                " - Author: " + authorName +
+                " | ISBN: " + isbn +
+                " | Number of pages: " + pageCount +
+                " | Available copies: " + availableCopies;
+    }
 }

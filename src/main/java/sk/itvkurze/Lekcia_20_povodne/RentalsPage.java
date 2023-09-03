@@ -1,9 +1,6 @@
-package sk.itvkurze.Lekcia_20;
+package sk.itvkurze.Lekcia_20_povodne;
 
 import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.List;
 

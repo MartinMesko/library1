@@ -3,6 +3,7 @@ package sk.itvkurze.Lekcia_18;
 import java.util.Scanner;
 
 public class LibraryApp {
+
     private static Scanner scanner = new Scanner(System.in);
     private static TitlesPage titlesPage = new TitlesPage(scanner);
     private static MembersPage membersPage = new MembersPage(scanner);

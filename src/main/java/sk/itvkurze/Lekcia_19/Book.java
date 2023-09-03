@@ -8,7 +8,7 @@ public class Book {
     private int availableCopies;
 
 
-
+    // konštruktor
     public Book(String title, String authorName, String isbn,int pageCount, int availableCopies) {
         this.authorName = authorName;
         this.title = title;
@@ -18,9 +18,13 @@ public class Book {
 
     }
 
-
+    // getter a setter metódy
     public String getAuthorName() {
         return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public String getTitle() {
@@ -35,10 +39,17 @@ public class Book {
         return pageCount;
     }
 
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
     public String getIsbn() {
         return isbn;
     }
 
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     public int getAvailableCopies() {
         return availableCopies;

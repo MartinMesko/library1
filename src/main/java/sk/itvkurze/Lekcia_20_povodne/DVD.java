@@ -1,4 +1,4 @@
-package sk.itvkurze.Lekcia_19;
+package sk.itvkurze.Lekcia_20_povodne;
 
 public class DVD {
     private String authorName;

@@ -1,19 +1,19 @@
-package sk.itvkurze.Lekcia_20;
+package sk.itvkurze.Lekcia_20_povodne;
 
-public class DVD {
+public class Book {
     private String authorName;
     private String title;
-    private int durationInMinutes;
-    private int numberOfTracks;
+    private int pageCount;
+    private String isbn;
     private int availableCopies;
 
 
     // konštruktor
-    public DVD(String title, String authorName,int numberOfTracks , int durationInMinutes, int availableCopies) {
+    public Book(String title, String authorName, String isbn,int pageCount, int availableCopies) {
         this.authorName = authorName;
         this.title = title;
-        this.durationInMinutes = durationInMinutes;
-        this.numberOfTracks = numberOfTracks;
+        this.pageCount = pageCount;
+        this.isbn = isbn;
         this.availableCopies = availableCopies;
 
     }
@@ -35,20 +35,20 @@ public class DVD {
         this.title = title;
     }
 
-    public int getDurationInMinutes() {
-        return durationInMinutes;
+    public int getPageCount() {
+        return pageCount;
     }
 
-    public void setDurationInMinutes(int durationInMinutes) {
-        this.durationInMinutes = durationInMinutes;
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
     }
 
-    public int getNumberOfTracks() {
-        return numberOfTracks;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setNumberOfTracks(int numberOfTracks) {
-        this.numberOfTracks = numberOfTracks;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public int getAvailableCopies() {
@@ -58,4 +58,6 @@ public class DVD {
     public void setAvailableCopies(int availableCopies) {
         this.availableCopies = availableCopies;
     }
+
+
 }

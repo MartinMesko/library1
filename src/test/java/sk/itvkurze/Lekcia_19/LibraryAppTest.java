@@ -3,8 +3,6 @@ package sk.itvkurze.Lekcia_19;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryAppTest extends LibraryAppHelper{

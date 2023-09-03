@@ -1,4 +1,4 @@
-package sk.itvkurze.Lekcia_20;
+package sk.itvkurze.Lekcia_20_povodne;
 
 import java.util.Scanner;
 
