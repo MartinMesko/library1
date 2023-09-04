@@ -4,16 +4,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
+import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LibraryApp1Test extends testingValidationHelper{
+public class LibraryApp1Test {
 
     private TitlesPage titlesPage;
 
     // pred kazdym testom vytvara novy objekt triedy titlesPage
     @BeforeEach
     public void setUp() {
-        titlesPage = new TitlesPage();
+        titlesPage = new TitlesPage(null);
     }
 
     // uklada argument (objekt) pomocou testovanej tiredy a vysledok porovna s ocakavanou hodnotou
@@ -28,7 +30,8 @@ public class LibraryApp1Test extends testingValidationHelper{
     @ParameterizedTest
     @ArgumentsSource(ArgumentProviderValidationString.class)
     public void testingValidationString(String input, String expected){
-        String actual = getString(input);
+        TitlesPage titlesPage = new TitlesPage(new Scanner(input));
+        String actual = titlesPage.validationCheckString();
         assertEquals(expected, actual);
     }
 
@@ -36,7 +39,8 @@ public class LibraryApp1Test extends testingValidationHelper{
     @ParameterizedTest
     @ArgumentsSource(ArgumentProviderValidationInt.class)
     public void testingValidationInt(String input, int expected){
-        int actual = getInt(input);
+        TitlesPage titlesPage = new TitlesPage(new Scanner(input));
+        int actual = titlesPage.validationCheckInt();
         assertEquals(expected, actual);
     }
 
@@ -44,7 +48,8 @@ public class LibraryApp1Test extends testingValidationHelper{
     @ParameterizedTest
     @ArgumentsSource(ArgumentProviderValidationISBN.class)
     public void testingValidationISBN(String input, String expected){
-        String actual = getISBN(input);
+        TitlesPage titlesPage = new TitlesPage(new Scanner(input));
+        String actual = titlesPage.validationCheckISBN();
         assertEquals(expected, actual);
     }
 }

@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LibraryAppTest {
 
+    /*
     private TitlesPage titlesPage;
 
     // pred kazdym testom vytvara novy objekt triedy titlesPage
@@ -123,4 +124,5 @@ public class LibraryAppTest {
         TitlesPage titlesPage = new TitlesPage();
         return titlesPage.validationCheckISBN();
     }
+     */
 }
