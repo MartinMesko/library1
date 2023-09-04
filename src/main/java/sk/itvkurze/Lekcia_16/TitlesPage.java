@@ -19,11 +19,6 @@ public class TitlesPage {
         loadTitles();
     }
 
-    public TitlesPage() {
-        this.scanner = new Scanner(System.in);
-        loadTitles();
-    }
-
     public static int loadTitlesFromFile(String filePath, String type) throws IOException {
         int addedTitlesCount = 0;
         BufferedReader reader = null;
@@ -67,43 +62,31 @@ public class TitlesPage {
         }
     }
 
-    public void displayTitlesMenu() {
+    public void showTitlesMenu() {
         System.out.println("Titles ");
         System.out.println("1 - Show All Titles");
         System.out.println("2 - Add Title");
         System.out.println("3 - Remove Title");
         System.out.println("4 - Back");
         System.out.print("Choose an option: ");
-        String input = scanner.nextLine();
 
-        int choice;
-        try {
-            choice = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid value.");
-            displayTitlesMenu();
-            return;
-        }
-
-        switch (choice) {
+        switch (LibraryApp.inputValidation(4)) {
             case 1 -> showAllTitles();
             case 2 -> addTitle();
             case 3 -> deleteTitle();
-            case 4 -> goBack();
-            default -> {
-                System.out.println("Please enter a number in the range from 1 to 4.");
-                displayTitlesMenu();
+            case 4 -> {
+                goBack();
+                LibraryApp.showMainMenu();
             }
+            default -> showTitlesMenu();
         }
     }
 
     private int displayTitleWithNumber(Object title, int startingNumber) {
-        if (title instanceof Book) {
-            Book book = (Book) title;
-            System.out.println(startingNumber + ". Name: " + book.getTitle() + " - Author: " + book.getAuthorName() + " | ISBN: " + book.getIsbn() + " | Number of pages: " + book.getPageCount() + " | Available copies: " + book.getAvailableCopies());
-        } else if (title instanceof DVD) {
-            DVD dvd = (DVD) title;
-            System.out.println(startingNumber + ". Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
+        if (title instanceof Book book) {
+            System.out.println(startingNumber + book.toString());
+        } else if (title instanceof DVD dvd) {
+            System.out.println(startingNumber + dvd.toString());
         }
         return startingNumber + 1;
     }
@@ -122,9 +105,8 @@ public class TitlesPage {
         System.out.println("Total number of all titles: " + totalTitlesCount);
         System.out.println(lineSeparator + "Press enter to return to Titles menu...");
         scanner.nextLine();
-        displayTitlesMenu();
+        showTitlesMenu();
     }
-
 
     public void addTitle() {
         System.out.println("Add a new title");
@@ -132,25 +114,12 @@ public class TitlesPage {
         System.out.println("2 - Add a DVD");
         System.out.println("3 - Back");
         System.out.print("Choose an option: ");
-        String input = scanner.nextLine();
 
-        int choice;
-        try {
-            choice = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid value.");
-            addTitle();
-            return;
-        }
-
-        switch (choice) {
+        switch (LibraryApp.inputValidation(3)) {
             case 1 -> addBook();
             case 2 -> addDVD();
-            case 3 -> displayTitlesMenu();
-            default -> {
-                System.out.println("Please enter a number in the range from 1 to 3.");
-                addTitle();
-            }
+            case 3 -> showTitlesMenu();
+            default -> addTitle();
         }
     }
 
@@ -170,12 +139,11 @@ public class TitlesPage {
         System.out.print("Enter number of Pages: ");
         int pages = validationCheckInt();
 
-
-        boolean result = saveTitle(new Book(author, name, isbn, pages, copies));
+        boolean result = saveTitle(new Book(name, author, isbn, pages, copies));
         if (result) {
             System.out.println("Book added succesfully..." + lineSeparator + "Press enter to continue...");
             scanner.nextLine();
-            displayTitlesMenu();
+            showTitlesMenu();
         } else {
             System.out.println("Failed to add the book.");
         }
@@ -193,11 +161,11 @@ public class TitlesPage {
         System.out.print("Enter number of chapters: ");
         int chapters = validationCheckInt();
 
-        boolean result = saveTitle(new DVD(author, name, length, chapters, copies));
+        boolean result = saveTitle(new DVD(name, author, chapters, length, copies));
         if (result) {
             System.out.println("Dvd added succesfully..." + lineSeparator + "Press enter to continue...");
             scanner.nextLine();
-            displayTitlesMenu();
+            showTitlesMenu();
         } else {
             System.out.println("Failed to add the DVD.");
         }
@@ -231,15 +199,13 @@ public class TitlesPage {
         }
     }
 
-    private static void deleteTitle() {
+    public void deleteTitle() {
 
     }
     private void goBack() {
         System.out.println("Going back to main menu...");
     }
 
-
-    // pridal som 3 metody na validaciu vstupu
     public String validationCheckString() {
         String input = scanner.nextLine();
         try {

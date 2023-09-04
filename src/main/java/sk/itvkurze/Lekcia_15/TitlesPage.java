@@ -65,43 +65,31 @@ public class TitlesPage {
         }
     }
 
-    public void displayTitlesMenu() {
+    public void showTitlesMenu() {
         System.out.println("Titles ");
         System.out.println("1 - Show All Titles");
         System.out.println("2 - Add Title");
         System.out.println("3 - Remove Title");
         System.out.println("4 - Back");
         System.out.print("Choose an option: ");
-        String input = scanner.nextLine();
 
-        int choice;
-        try {
-            choice = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid value.");
-            displayTitlesMenu();
-            return;
-        }
-
-        switch (choice) {
+        switch (LibraryApp.inputValidation(4)) {
             case 1 -> showAllTitles();
             case 2 -> addTitle();
             case 3 -> deleteTitle();
-            case 4 -> goBack();
-            default -> {
-                System.out.println("Please enter a number in the range from 1 to 4.");
-                displayTitlesMenu();
+            case 4 -> {
+                goBack();
+                LibraryApp.showMainMenu();
             }
+            default -> showTitlesMenu();
         }
     }
 
     private int displayTitleWithNumber(Object title, int startingNumber) {
-        if (title instanceof Book) {
-            Book book = (Book) title;
-            System.out.println(startingNumber + ". Name: " + book.getTitle() + " - Author: " + book.getAuthorName() + " | ISBN: " + book.getIsbn() + " | Number of pages: " + book.getPageCount() + " | Available copies: " + book.getAvailableCopies());
-        } else if (title instanceof DVD) {
-            DVD dvd = (DVD) title;
-            System.out.println(startingNumber + ". Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
+        if (title instanceof Book book) {
+            System.out.println(startingNumber + book.toString());
+        } else if (title instanceof DVD dvd) {
+            System.out.println(startingNumber + dvd.toString());
         }
         return startingNumber + 1;
     }
@@ -120,18 +108,18 @@ public class TitlesPage {
         System.out.println("Total number of all titles: " + totalTitlesCount);
         System.out.println(lineSeparator + "Press enter to return to Titles menu...");
         scanner.nextLine();
-        displayTitlesMenu();
+        showTitlesMenu();
     }
 
-    private static void addTitle() {
+    public void addTitle() {
         // TODO: Implementuj metodu pridaj titul
     }
 
-    private static void deleteTitle() {
+    public void deleteTitle() {
         // TODO: Implementuje metodu zmazania
     }
 
-    private static void goBack() {
+    public void goBack() {
         System.out.println("Going back to main menu...");
     }
 }

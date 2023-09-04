@@ -1,17 +1,16 @@
 package sk.itvkurze.Lekcia_18;
 
 public class Member {
-    private String name;
-    private String surname;
-    private String dateOfBirth;
-    private int personalId;
+    private final String name;
+    private final String surname;
+    private final String dateOfBirth;
+    private final int personalId;
 
     public Member(String name, String surname, String dateOfBirth, int personalId) {
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
         this.personalId = personalId;
-
     }
 
     public Member() {
@@ -39,8 +38,9 @@ public class Member {
 
     @Override
     public String toString() {
-        return name + " " + surname + " | Date of Birth: " + dateOfBirth + " - Personal Id: " + personalId;
+        return name + " " +
+                surname + " | Date of Birth: " +
+                dateOfBirth + " - Personal Id: " +
+                personalId;
     }
-
-
 }

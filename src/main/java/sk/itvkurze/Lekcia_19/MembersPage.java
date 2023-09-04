@@ -22,7 +22,49 @@ public class MembersPage {
 
     public MembersPage() {
         this.scanner = new Scanner(System.in);
-        loadMembers();
+    }
+
+    public void showMembersMenu() {
+        System.out.println("Members ");
+        System.out.println("1 - Show All Members");
+        System.out.println("2 - Add Member");
+        System.out.println("3 - Remove Member");
+        System.out.println("4 - Back");
+        System.out.print("Choose an option: ");
+
+        switch (LibraryApp.inputValidation(4)) {
+            case 1 -> showAllMembers();
+            case 2 -> addMember();
+            case 3 -> deleteMember();
+            case 4 -> {
+                goBack();
+                LibraryApp.showMainMenu();
+            }
+            default -> showMembersMenu();
+        }
+    }
+
+    public void showAllMembers() {
+        listingAllMembers();
+
+        if (totalMembersCount >= 1){
+            System.out.println("Total number of all members: " + totalMembersCount);
+            System.out.println(lineSeparator + "Press enter to return to Members menu...");
+        } else {
+            System.out.println(lineSeparator + "Member list is empty. Press enter to return to Members menu...");
+        }
+        scanner.nextLine();
+        showMembersMenu();
+    }
+
+    public void listingAllMembers(){
+        System.out.println("All Members:");
+        int memberCounter = 1;
+
+        for (Member member : members) {
+            System.out.println(memberCounter + ". " + member);
+            memberCounter++;
+        }
     }
 
     public void loadMembers() {
@@ -34,7 +76,6 @@ public class MembersPage {
     }
 
     public static int loadMembersFromFile(String filePath) throws IOException {
-        int addedMembersCount = 0;
         BufferedReader reader = null;
         try {
             File membersFile = new File(filePath);
@@ -47,7 +88,7 @@ public class MembersPage {
                 try {
                     if (parts.length >= 3) {
                         members.add(new Member(parts[0].trim(), parts[1].trim(), parts[2].trim(), Integer.parseInt(parts[3].trim())));
-                        addedMembersCount++;
+                        totalMembersCount++;
                     }
                 } catch (NumberFormatException e) {
                     System.err.println("Error parsing number from line: " + line);
@@ -58,53 +99,7 @@ public class MembersPage {
                 reader.close();
             }
         }
-        totalMembersCount += addedMembersCount;
-        return addedMembersCount;
-    }
-
-    public void displayMembersMenu() {
-        System.out.println("Members ");
-        System.out.println("1 - Show All Members");
-        System.out.println("2 - Add Member");
-        System.out.println("3 - Remove Member");
-        System.out.println("4 - Back");
-        System.out.print("Choose an option: ");
-        String input = scanner.nextLine();
-
-        int choice;
-        try {
-            choice = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid value.");
-            displayMembersMenu();
-            return;
-        }
-
-        switch (choice) {
-            case 1 -> showAllMembers();
-            case 2 -> addMember();
-            case 3 -> deleteMember();
-            case 4 -> goBack();
-            default -> {
-                System.out.println("Please enter a number in the range from 1 to 4.");
-                displayMembersMenu();
-            }
-        }
-    }
-
-    public void showAllMembers() {
-        System.out.println("All Members:");
-        int memberCounter = 1;
-
-        for (Member member : members) {
-            System.out.println(memberCounter + ". " + member);
-            memberCounter++;
-        }
-
-        System.out.println("Total number of all members: " + totalMembersCount);
-        System.out.println(lineSeparator + "Press enter to return to Members menu...");
-        scanner.nextLine();
-        displayMembersMenu();
+        return totalMembersCount;
     }
 
     public void addMember() {
@@ -122,7 +117,7 @@ public class MembersPage {
         if (result) {
             System.out.println("Member added successfully" + lineSeparator + "Press enter to return to Members page...");
             scanner.nextLine();
-            displayMembersMenu();
+            showMembersMenu();
         } else {
             System.out.println("Failed to add the member.");
         }
@@ -149,32 +144,16 @@ public class MembersPage {
         if (totalMembersCount == 0) {
             System.out.println("No members to remove. Press enter to return to Members page...");
             scanner.nextLine();
-            displayMembersMenu();
+            showMembersMenu();
             return;
         }
 
         System.out.println("Remove member page");
         System.out.print("Choose a member to delete:" + lineSeparator);
-        showAllMembersWithoutReturn();
+        listingAllMembers();
         System.out.println("Choose an option:");
 
         int memberNumber = validationChecksTheRemovedMember();
-
-        /*
-        int memberNumber;
-        try {
-            memberNumber = validationCheckInt();
-            if (memberNumber < 1 || memberNumber > totalMembersCount) {
-                System.out.println("Please enter a number in the range from 1 to " + totalMembersCount + ".");
-                deleteMember();
-                return;
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("Invalid input. Please try again.");
-            deleteMember();
-            return;
-        }
-         */
 
         try {
             File membersFile = new File(memberFilePath);
@@ -188,30 +167,11 @@ public class MembersPage {
             totalMembersCount--;
             System.out.println("Member deleted successfully." + lineSeparator + "Press enter to return to Members page...");
             scanner.nextLine();
-            displayMembersMenu();
+            showMembersMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-    public void showAllMembersWithoutReturn() {
-        System.out.println("All Members:");
-        int memberCounter = 1;
-
-        for (Member member : members) {
-            memberCounter = displayMemberWithNumber(member, memberCounter);
-        }
-
-        System.out.println("Total number of all members: " + totalMembersCount);
-    }
-
-
-    private int displayMemberWithNumber(Member member, int memberCounter) {
-        System.out.println(memberCounter + ". " + member.toString());
-        return memberCounter + 1;
-    }
-
 
     private void goBack() {
         System.out.println("Going back to main menu...");

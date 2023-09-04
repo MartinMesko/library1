@@ -7,7 +7,6 @@ public class Book {
     private String isbn;
     private int availableCopies;
 
-    // konštruktor
     public Book(String title, String authorName, String isbn,int pageCount, int availableCopies) {
         this.authorName = authorName;
         this.title = title;
@@ -16,7 +15,6 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
-    // getter a setter metódy
     public String getAuthorName() {
         return authorName;
     }

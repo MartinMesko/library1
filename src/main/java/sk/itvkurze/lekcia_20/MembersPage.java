@@ -47,6 +47,19 @@ public class MembersPage {
     }
 
     public void showAllMembers() {
+        listingAllMembers();
+
+        if (totalMembersCount >= 1){
+            System.out.println("Total number of all members: " + totalMembersCount);
+            System.out.println(lineSeparator + "Press enter to return to Members menu...");
+        } else {
+            System.out.println(lineSeparator + "Member list is empty. Press enter to return to Members menu...");
+        }
+        scanner.nextLine();
+        showMembersMenu();
+    }
+
+    public void listingAllMembers(){
         System.out.println("All Members:");
         int memberCounter = 1;
 
@@ -54,11 +67,6 @@ public class MembersPage {
             System.out.println(memberCounter + ". " + member);
             memberCounter++;
         }
-
-        System.out.println("Total number of all members: " + totalMembersCount);
-        System.out.println(lineSeparator + "Press enter to return to Members menu...");
-        scanner.nextLine();
-        showMembersMenu();
     }
 
     public void loadMembers() {
@@ -144,7 +152,7 @@ public class MembersPage {
 
         System.out.println("Remove member page");
         System.out.print("Choose a member to delete:" + lineSeparator);
-        showAllMembersWithoutReturn();
+        listingAllMembers();
         System.out.println("Choose an option:");
 
         int memberNumber = validationChecksTheRemovedMember();
@@ -166,23 +174,6 @@ public class MembersPage {
             e.printStackTrace();
         }
     }
-
-    public void showAllMembersWithoutReturn() {
-        System.out.println("All Members:");
-        int memberCounter = 1;
-
-        for (Member member : members) {
-            memberCounter = displayMemberWithNumber(member, memberCounter);
-        }
-        System.out.println("Total number of all members: " + totalMembersCount);
-    }
-
-
-    private int displayMemberWithNumber(Member member, int memberCounter) {
-        System.out.println(memberCounter + ". " + member.toString());
-        return memberCounter + 1;
-    }
-
 
     private void goBack() {
         System.out.println("Going back to main menu...");

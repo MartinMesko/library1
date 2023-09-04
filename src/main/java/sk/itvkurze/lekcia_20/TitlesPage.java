@@ -145,8 +145,7 @@ public class TitlesPage {
         System.out.print("Enter number of Pages: ");
         int pages = validationCheckInt();
 
-
-        boolean result = saveTitle(new Book(author, name, isbn, pages, copies));
+        boolean result = saveTitle(new Book(name, author, isbn, pages, copies));
         if (result) {
             System.out.println("Book added succesfully..." + lineSeparator + "Press enter to continue...");
             scanner.nextLine();
@@ -168,7 +167,7 @@ public class TitlesPage {
         System.out.print("Enter number of chapters: ");
         int chapters = validationCheckInt();
 
-        boolean result = saveTitle(new DVD(author, name, length, chapters, copies));
+        boolean result = saveTitle(new DVD(name, author, chapters, length, copies));
         if (result) {
             System.out.println("Dvd added succesfully..." + lineSeparator + "Press enter to continue...");
             scanner.nextLine();

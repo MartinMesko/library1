@@ -38,7 +38,7 @@ public class RentalsPage {
         MembersPage membersPage = new MembersPage();
         System.out.println("Choose a member to rent a title:");
 
-        membersPage.showAllMembersWithoutReturn();
+        membersPage.listingAllMembers();
 
         System.out.print("Enter member number to select: ");
         int memberNumber = LibraryApp.inputValidation(MembersPage.totalMembersCount);

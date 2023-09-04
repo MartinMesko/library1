@@ -1,11 +1,11 @@
-J.K. Rowling,Harry Potter a Kameň mudrcov,978-1-56619-909-4,310,5
-J.R.R. Tolkien,Pán prsteňov: Spoločenstvo prsteňa,978-0-345-33973-1,423,4
-George Orwell,1984,978-0-452-28423-4,268,6
-F. Scott Fitzgerald,Veľký Gatsby,978-0-7432-7356-5,192,3
-Harper Lee,Zabiť mockingbirda,978-0-06-112008-4,281,4
-Markus Zusak,Zlodej kníh,978-0-375-84220-7,552,3
-Gabriel García Márquez,Sto rokov samoty,978-0-06-088328-7,417,2
-Fyodor Dostoyevsky,Zločin a trest,978-0-14-044913-6,720,4
-Ernest Hemingway,Starnutie a more,978-0-684-80122-3,127,5
-Jane Austen,Rozum a cit,978-0-14-143966-2,374,2
-John Steinbeck,Hrozby hrozby,978-0-14-017739-8,455,3
+Harry Potter a Kameň mudrcov,J.K. Rowling,9781566199094,310,5
+Pán prsteňov: Spoločenstvo prsteňa,J.R.R. Tolkien,9780345339731,423,4
+1984,George Orwell,9780452284234,268,6
+Veľký Gatsby,F. Scott Fitzgerald,9780743273565,192,3
+Zabiť mockingbirda,Harper Lee,9780061120084,281,4
+Zlodej kníh,Markus Zusak,9780375842207,552,3
+Sto rokov samoty,Gabriel García Márquez,9780060883287,417,2
+Zločin a trest,Fyodor Dostoyevsky,9780140449136,720,4
+Starec a more,Ernest Hemingway,9780684801223,127,5
+Rozum a cit,Jane Austen,9780141439662,374,2
+Hrozby hrozby,John Steinbeck,9780140177398,455,3

@@ -3,10 +3,10 @@ package sk.itvkurze.Lekcia_19;
 import java.util.Scanner;
 
 public class LibraryApp {
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final TitlesPage titlesPage = new TitlesPage(scanner);
+    private static final MembersPage membersPage = new MembersPage(scanner);
 
-    private static Scanner scanner = new Scanner(System.in);
-    private static TitlesPage titlesPage = new TitlesPage(scanner);
-    private static MembersPage membersPage = new MembersPage(scanner);
     public static void main(String[] args) {
         System.out.println(">>>> Welcome to our Library <<<<");
         showMainMenu();
@@ -20,39 +20,30 @@ public class LibraryApp {
         System.out.println("5 - Exit");
         System.out.print("Choose an option: ");
 
-        int choice = getChoice();
-
-        switch (choice) {
-            case 1 -> {
-                titlesPage.displayTitlesMenu();
-                showMainMenu();
-            }
-            case 2 -> {
-                membersPage.displayMembersMenu();
-
-                showMainMenu();
-            }
-
-            case 3, 4 -> {
+        switch (inputValidation(5)) {
+            case 1 -> titlesPage.showTitlesMenu();
+            case 2 -> membersPage.showMembersMenu();
+            case 4, 3 -> {
                 // prejde submenu aplikácie
                 showMainMenu();
             }
-
             case 5 -> System.out.println("Exiting application...");
-            default -> {
-                System.out.println("Please enter a number in the range from 1 to 5");
-                showMainMenu();
-            }
+            default -> showMainMenu();
         }
     }
 
-    public static int getChoice() {
+    public static int inputValidation(int numberOfCase) {
         String input = scanner.nextLine();
         try {
-            return Integer.parseInt(input);
+            int inputNumber = Integer.parseInt(input);
+            if (inputNumber < 1 || inputNumber > numberOfCase){
+                System.out.println("Please enter a number in the range from 1 to " + numberOfCase);
+                return inputValidation(numberOfCase);
+            }
+            return inputNumber;
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid value.");
-            return getChoice();
+            return inputValidation(numberOfCase);
         }
     }
 }

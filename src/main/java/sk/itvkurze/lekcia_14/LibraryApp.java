@@ -3,7 +3,6 @@ package sk.itvkurze.lekcia_14;
 import java.util.Scanner;
 
 public class LibraryApp {
-
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -19,9 +18,7 @@ public class LibraryApp {
         System.out.println("5 - Exit");
         System.out.print("Choose an option: ");
 
-        int choice = getChoice();
-
-        switch (choice) {
+        switch (inputValidation(5)) {
             case 1, 2, 3, 4 -> {
 
                 showMainMenu(); // Návrat do hlavnej ponuky po dokončení aktuálnej operácie
@@ -29,20 +26,22 @@ public class LibraryApp {
             // prejde submenu aplikácie
 
             case 5 -> System.out.println("Exiting application...");
-            default -> {
-                System.out.println("Please enter a number in the range from 1 to 5");
-                showMainMenu();
-            }
+            default -> showMainMenu();
         }
     }
 
-    public static int getChoice() {
+    public static int inputValidation(int numberOfCase) {
         String input = scanner.nextLine();
         try {
-            return Integer.parseInt(input);
+            int inputNumber = Integer.parseInt(input);
+            if (inputNumber < 1 || inputNumber > numberOfCase) {
+                System.out.println("Please enter a number in the range from 1 to " + numberOfCase);
+                return inputValidation(numberOfCase);
+            }
+            return inputNumber;
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid value.");
-            return getChoice(); // Opätovne sa rekurzívne pýta na vstup, kým nie je zadaný platný vstup
+            return inputValidation(numberOfCase);
         }
     }
 }
