@@ -6,11 +6,4 @@ The Matrix,Wachowski Siblings,18,136,4
 Star Wars: A New Hope,George Lucas,21,121,5
 Pulp Fiction,Quentin Tarantino,24,154,4
 Schindler's List,Steven Spielberg,28,195,2
-Spielberg,E.T.,7,99,0
-Spielberg,E.T.,7,99,0
-Spielberg,E.T.,7,99,0
-Spielberg,E.T.,7,99,0
-Spielberg,E.T.,7,99,0
-Spielberg,E.T.,7,99,0
-Spielberg,E.T.,7,99,0
-Spielberg,E.T.,7,99,0
+

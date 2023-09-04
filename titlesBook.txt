@@ -9,11 +9,4 @@ Zločin a trest,Fyodor Dostoyevsky,9780140449136,720,4
 Starec a more,Ernest Hemingway,9780684801223,127,5
 Rozum a cit,Jane Austen,9780141439662,374,2
 Hrozby hrozby,John Steinbeck,9780140177398,455,3
-Jakub Pele,Maria Antoneta,1234567890123,234,10
-Jakub Pele,Maria Antoneta,1234567890123,234,10
-Jakub Pele,Maria Antoneta,1234567890123,234,10
-Jakub Pele,Maria Antoneta,1234567890123,234,10
-Jakub Pele,Maria Antoneta,1234567890123,234,10
-Jakub Pele,Maria Antoneta,1234567890123,234,10
-Jakub Pele,Maria Antoneta,1234567890123,234,10
-Jakub Pele,Maria Antoneta,1234567890123,234,10
+
