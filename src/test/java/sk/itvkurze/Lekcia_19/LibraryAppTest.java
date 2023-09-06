@@ -1,5 +1,7 @@
 package sk.itvkurze.Lekcia_19;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
@@ -7,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryAppTest extends LibraryAppHelper{
 
-    /*
+
     private MembersPage membersPage;
     private Member member1, member2;
 
@@ -37,7 +39,7 @@ public class LibraryAppTest extends LibraryAppHelper{
         assertFalse(MembersPage.members.contains(member1));
         assertTrue(MembersPage.members.contains(member2));
     }
-     */
+
 
     // test ci metoda saveMember() realne ulozi noveho member do databazi (txt suboru)
     @ParameterizedTest
