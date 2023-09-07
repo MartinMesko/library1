@@ -70,7 +70,7 @@ public class TitlesPage {
         System.out.println("4 - Back");
         System.out.print("Choose an option: ");
 
-        switch (LibraryApp.inputValidation(4)) {
+        switch (LibraryApp.getValidatedChoice(4)) {
             case 1 -> showAllTitles();
             case 2 -> addTitle();
             case 3 -> deleteTitle();
@@ -115,7 +115,7 @@ public class TitlesPage {
         System.out.println("3 - Back");
         System.out.print("Choose an option: ");
 
-        switch (LibraryApp.inputValidation(3)) {
+        switch (LibraryApp.getValidatedChoice(3)) {
             case 1 -> addBook();
             case 2 -> addDVD();
             case 3 -> showTitlesMenu();

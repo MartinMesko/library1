@@ -73,7 +73,7 @@ public class TitlesPage {
         System.out.println("4 - Back");
         System.out.print("Choose an option: ");
 
-        switch (LibraryApp.inputValidation(4)) {
+        switch (LibraryApp.getValidatedChoice(4)) {
             case 1 -> showAllTitles();
             case 2 -> addTitle();
             case 3 -> deleteTitle();

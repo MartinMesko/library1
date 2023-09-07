@@ -18,7 +18,7 @@ public class LibraryApp {
         System.out.println("5 - Exit");
         System.out.print("Choose an option: ");
 
-        switch (inputValidation(5)) {
+        switch (getValidatedChoice(5)) {
             case 1, 2, 3, 4 -> {
 
                 showMainMenu(); // Návrat do hlavnej ponuky po dokončení aktuálnej operácie
@@ -30,18 +30,18 @@ public class LibraryApp {
         }
     }
 
-    public static int inputValidation(int numberOfCase) {
+    public static int getValidatedChoice(int numberOfCase) {
         String input = scanner.nextLine();
         try {
             int inputNumber = Integer.parseInt(input);
             if (inputNumber < 1 || inputNumber > numberOfCase) {
                 System.out.println("Please enter a number in the range from 1 to " + numberOfCase);
-                return inputValidation(numberOfCase);
+                return getValidatedChoice(numberOfCase);
             }
             return inputNumber;
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid value.");
-            return inputValidation(numberOfCase);
+            return getValidatedChoice(numberOfCase);
         }
     }
 }

@@ -32,7 +32,7 @@ public class MembersPage {
         System.out.println("4 - Back");
         System.out.print("Choose an option: ");
 
-        switch (LibraryApp.inputValidation(4)) {
+        switch (LibraryApp.getValidatedChoice(4)) {
             case 1 -> showAllMembers();
             case 2 -> addMember();
             case 3 -> deleteMember();

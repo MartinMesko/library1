@@ -19,7 +19,7 @@ public class RentalsPage {
         System.out.println("7 - Back");
         System.out.println("Choose an option: ");
 
-        switch (LibraryApp.inputValidation(7)) {
+        switch (LibraryApp.getValidatedChoice(7)) {
             case 1 -> rentTitle();
             case 2 -> returnItem();
             case 3 -> prolongRental();
@@ -41,7 +41,7 @@ public class RentalsPage {
         membersPage.listingAllMembers();
 
         System.out.print("Enter member number to select: ");
-        int memberNumber = LibraryApp.inputValidation(MembersPage.totalMembersCount);
+        int memberNumber = LibraryApp.getValidatedChoice(MembersPage.totalMembersCount);
 
         System.out.println("Selected member: " + memberNumber);
 
