@@ -273,6 +273,7 @@ public class TitlesPage {
             displayTitlesMenu();
 
         } catch (IOException e) {
+            System.out.println("Title not removed.");
             e.printStackTrace();
         }
     }
