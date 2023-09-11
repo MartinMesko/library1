@@ -1,4 +1,4 @@
-package sk.itvkurze.Lekcia_14;
+package sk.itvkurze.lekcia_14;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
