@@ -2,7 +2,6 @@ package sk.itvkurze.Lekcia_15;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import sk.itvkurze.Lekcia_15.TitlesPage;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
