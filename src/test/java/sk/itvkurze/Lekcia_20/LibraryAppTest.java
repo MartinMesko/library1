@@ -1,13 +1,27 @@
 package sk.itvkurze.Lekcia_20;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.io.File;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryAppTest {
+
+    @Test
+    void whenMemberIsAddedThenMembersFileIsNotEmpty() throws Exception {
+        Member member = new Member("Jurak", "kukura", "10.10.1951", 123456);
+        MembersPage.saveMember(member);
+        File membersFile = new File(MembersPage.memberFilePath);
+        assertTrue(membersFile.exists(), "File members.txt should exist");
+        assertTrue(Files.size(membersFile.toPath()) > 0, "File members.txt should not be empty");
+    }
 
     @Test
     void whenValidInputIsGivenThenReturnCorrectChoice() {
@@ -16,8 +30,6 @@ class LibraryAppTest {
         assertEquals(1, choice);
 
     }
-
-
 
     private void setInput(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
