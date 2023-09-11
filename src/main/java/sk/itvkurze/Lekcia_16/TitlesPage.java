@@ -200,9 +200,10 @@ public class TitlesPage {
     }
 
     public void deleteTitle() {
-
+        // TODO: Implementuje metodu zmazania
     }
-    private void goBack() {
+
+    public void goBack() {
         System.out.println("Going back to main menu...");
     }
 

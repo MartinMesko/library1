@@ -34,8 +34,8 @@ public class MembersPage {
             case 2 -> addMember();
             case 3 -> deleteMember();
             case 4 -> {
-                LibraryApp.showMainMenu();
                 goBack();
+                LibraryApp.showMainMenu();
             }
             default -> showMembersMenu();
         }

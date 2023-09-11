@@ -1,4 +1,4 @@
-package sk.itvkurze.Lekcia_20_povodne;
+package sk.itvkurze.Lekcia_21;
 
 public class DVD {
     private String authorName;
@@ -7,18 +7,14 @@ public class DVD {
     private int numberOfTracks;
     private int availableCopies;
 
-
-    // konštruktor
     public DVD(String title, String authorName,int numberOfTracks , int durationInMinutes, int availableCopies) {
         this.authorName = authorName;
         this.title = title;
         this.durationInMinutes = durationInMinutes;
         this.numberOfTracks = numberOfTracks;
         this.availableCopies = availableCopies;
-
     }
 
-    // getter a setter metódy
     public String getAuthorName() {
         return authorName;
     }
@@ -57,5 +53,14 @@ public class DVD {
 
     public void setAvailableCopies(int availableCopies) {
         this.availableCopies = availableCopies;
+    }
+
+    @Override
+    public String toString() {
+        return ". Name: " + title +
+                " - Author: " + authorName +
+                " - Number of chapters: " + numberOfTracks +
+                " - Length in minutes: " + durationInMinutes +
+                " | Available copies: " + availableCopies;
     }
 }

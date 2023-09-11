@@ -1,10 +1,12 @@
-package sk.itvkurze.Lekcia_20;
+package sk.itvkurze.Lekcia_21;
 
 import java.util.Scanner;
 
 public class RentalsPage {
+    private final Scanner scanner;
     private final TitlesPage titlesPage;
     public RentalsPage(Scanner scanner) {
+        this.scanner = scanner;
         this.titlesPage = new TitlesPage();
     }
 
@@ -45,10 +47,65 @@ public class RentalsPage {
 
         System.out.println("Selected member: " + memberNumber);
 
+        checkTheMaximumNumberRentedTitles(memberNumber);
+
         System.out.println("Available titles for rent:");
         titlesPage.showAllTitlesWithoutReturn();
 
+        System.out.println("Choose an option:");
+        rentASelectedTitle();
+
         showRentalsMemu();
+    }
+
+    public void checkTheMaximumNumberRentedTitles(int memberNumber) {
+        Member selectedMember = MembersPage.members.get(memberNumber - 1);
+        if (selectedMember.getRentedTitleBook() != null){
+            if (selectedMember.getRentedTitleBook().size() >= 2){
+                System.out.println("The selected member has already rented the maximum number of titles.");
+                showRentalsMemu();
+            }
+            //System.out.println(" ");
+        }
+    }
+
+    public void rentASelectedTitle(){
+        int chooseForRent = LibraryApp.getValidatedChoice(TitlesPage.totalTitlesCount);
+        CheckRentedTheSameTitle(chooseForRent);
+
+
+
+    }
+
+    public void CheckRentedTheSameTitle(int chooseForRent){
+        Member member = new Member();
+        if (chooseForRent - 1 <= TitlesPage.books.size()){
+
+            if (member.getRentedTitleBook().contains(TitlesPage.books.get(chooseForRent - 1))){
+
+                System.out.println("Title " + TitlesPage.books.get(chooseForRent - 1).getTitle() + " already rented");
+                showRentalsMemu();
+            } else {
+                member.rentedTitleBook.add(TitlesPage.books.get(chooseForRent - 1));
+                System.out.println("Title rented successfully\n");
+                System.out.println("Press enter to continue...");
+                scanner.nextLine();
+                showRentalsMemu();
+            }
+
+        } else {
+
+            if (member.getRentedTitleDvd().contains(TitlesPage.dvds.get(chooseForRent - 1 - TitlesPage.books.size()))){
+                System.out.println("Title " + TitlesPage.dvds.get(chooseForRent - 1 - TitlesPage.books.size()).getTitle() + " already rented");
+                showRentalsMemu();
+            } else {
+                member.rentedTitleDvd.add(TitlesPage.dvds.get(chooseForRent - 1 - TitlesPage.books.size()));
+                System.out.println("Title rented successfully");
+                System.out.println("Press enter to continue...");
+                scanner.nextLine();
+                showRentalsMemu();
+            }
+        }
     }
 
     private void returnItem() {

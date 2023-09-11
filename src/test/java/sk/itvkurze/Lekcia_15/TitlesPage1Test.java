@@ -1,4 +1,4 @@
-package sk.itvkurze.Lekcia_15;
+package sk.itvkurze.lekcia_15;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

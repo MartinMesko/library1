@@ -1,4 +1,4 @@
-package sk.itvkurze.lekcia_20;
+package sk.itvkurze.Lekcia_20;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -39,8 +39,8 @@ public class MembersPage {
             case 2 -> addMember();
             case 3 -> deleteMember();
             case 4 -> {
-                LibraryApp.showMainMenu();
                 goBack();
+                LibraryApp.showMainMenu();
             }
             default -> showMembersMenu();
         }

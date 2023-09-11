@@ -1,4 +1,4 @@
-package sk.itvkurze.Lekcia_20_povodne;
+package sk.itvkurze.Lekcia_21;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -23,7 +23,6 @@ public class TitlesPage {
 
     public TitlesPage() {
         this.scanner = new Scanner(System.in);
-        loadTitles();
     }
 
     public static int loadTitlesFromFile(String filePath, String type) throws IOException {
@@ -69,43 +68,31 @@ public class TitlesPage {
         }
     }
 
-    public void displayTitlesMenu() {
+    public void showTitlesMenu() {
         System.out.println("Titles ");
         System.out.println("1 - Show All Titles");
         System.out.println("2 - Add Title");
         System.out.println("3 - Remove Title");
         System.out.println("4 - Back");
         System.out.print("Choose an option: ");
-        String input = scanner.nextLine();
 
-        int choice;
-        try {
-            choice = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid value.");
-            displayTitlesMenu();
-            return;
-        }
-
-        switch (choice) {
+        switch (LibraryApp.getValidatedChoice(4)) {
             case 1 -> showAllTitles();
             case 2 -> addTitle();
             case 3 -> deleteTitle();
-            case 4 -> goBack();
-            default -> {
-                System.out.println("Please enter a number in the range from 1 to 4.");
-                displayTitlesMenu();
+            case 4 -> {
+                goBack();
+                LibraryApp.showMainMenu();
             }
+            default -> showTitlesMenu();
         }
     }
 
     private int displayTitleWithNumber(Object title, int startingNumber) {
-        if (title instanceof Book) {
-            Book book = (Book) title;
-            System.out.println(startingNumber + ". Name: " + book.getTitle() + " - Author: " + book.getAuthorName() + " | ISBN: " + book.getIsbn() + " | Number of pages: " + book.getPageCount() + " | Available copies: " + book.getAvailableCopies());
-        } else if (title instanceof DVD) {
-            DVD dvd = (DVD) title;
-            System.out.println(startingNumber + ". Name: " + dvd.getTitle() + " - Author: " + dvd.getAuthorName() + " - Number of chapters: " + dvd.getNumberOfTracks() + " - Length in minutes: " + dvd.getDurationInMinutes() + " | Available copies: " + dvd.getAvailableCopies());
+        if (title instanceof Book book) {
+            System.out.println(startingNumber + book.toString());
+        } else if (title instanceof DVD dvd) {
+            System.out.println(startingNumber + dvd.toString());
         }
         return startingNumber + 1;
     }
@@ -123,10 +110,10 @@ public class TitlesPage {
 
         System.out.println("Total number of all titles: " + totalTitlesCount);
         System.out.println(lineSeparator + "Press enter to return to Titles menu...");
+        //writeAllTitles();
         scanner.nextLine();
-        displayTitlesMenu();
+        showTitlesMenu();
     }
-
 
     public void addTitle() {
         System.out.println("Add a new title");
@@ -134,25 +121,12 @@ public class TitlesPage {
         System.out.println("2 - Add a DVD");
         System.out.println("3 - Back");
         System.out.print("Choose an option: ");
-        String input = scanner.nextLine();
 
-        int choice;
-        try {
-            choice = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid value.");
-            addTitle();
-            return;
-        }
-
-        switch (choice) {
+        switch (LibraryApp.getValidatedChoice(3)) {
             case 1 -> addBook();
             case 2 -> addDVD();
-            case 3 -> displayTitlesMenu();
-            default -> {
-                System.out.println("Please enter a number in the range from 1 to 3.");
-                addTitle();
-            }
+            case 3 -> showTitlesMenu();
+            default -> addTitle();
         }
     }
 
@@ -165,19 +139,18 @@ public class TitlesPage {
         int copies = validationCheckInt();
         System.out.print("Enter ISBN: ");
         String isbn = validationCheckISBN();                // neviem ci to nechame ako String. Podla mna ISBN by malo byt long.
-        // Ak nechame String tak program vyhodnoti dlhe cislo ako String.
-        // V zneni zadania je ISBN 13 miestne cislo a nezmesti sa do int.
-        // Jediny sposob je zvlast metoda len kvoli ISBN na validaciu tak ako je to teraz.
-        // otazne je ci v dalsich lekciach niekde nebude robit podobny problem.
+                                                            // Ak nechame String tak program vyhodnoti dlhe cislo ako String.
+                                                            // V zneni zadania je ISBN 13 miestne cislo a nezmesti sa do int.
+                                                            // Jediny sposob je zvlast metoda len kvoli ISBN na validaciu tak ako je to teraz.
+                                                            // otazne je ci v dalsich lekciach niekde nebude robit podobny problem.
         System.out.print("Enter number of Pages: ");
         int pages = validationCheckInt();
 
-
-        boolean result = saveTitle(new Book(author, name, isbn, pages, copies));
+        boolean result = saveTitle(new Book(name, author, isbn, pages, copies));
         if (result) {
             System.out.println("Book added succesfully..." + lineSeparator + "Press enter to continue...");
             scanner.nextLine();
-            displayTitlesMenu();
+            showTitlesMenu();
         } else {
             System.out.println("Failed to add the book.");
         }
@@ -195,11 +168,11 @@ public class TitlesPage {
         System.out.print("Enter number of chapters: ");
         int chapters = validationCheckInt();
 
-        boolean result = saveTitle(new DVD(author, name, length, chapters, copies));
+        boolean result = saveTitle(new DVD(name, author, chapters, length, copies));
         if (result) {
             System.out.println("Dvd added succesfully..." + lineSeparator + "Press enter to continue...");
             scanner.nextLine();
-            displayTitlesMenu();
+            showTitlesMenu();
         } else {
             System.out.println("Failed to add the DVD.");
         }
@@ -237,14 +210,14 @@ public class TitlesPage {
         if (totalTitlesCount == 0) {
             System.out.println("No titles to remove. Press enter to return to titles...");
             scanner.nextLine();
-            displayTitlesMenu();
+            showTitlesMenu();
             return;
         }
+        System.out.println("Remove Title Page");
         showAllTitlesWithoutReturn();
 
-        System.out.print("Select a title to delete:");
-        int titleNumber = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Select a title to delete: ");
+        int titleNumber = validationChecksTheRemovedNumber();
 
         try {
             File titlesFile = new File(bookFilePath);
@@ -253,24 +226,20 @@ public class TitlesPage {
             File titlesDVDFile = new File(dvdFilePath);
             List<String> dvdLines = Files.readAllLines(titlesDVDFile.toPath(), StandardCharsets.UTF_8);
 
-            titleNumber = validateTitleNumber(titleNumber, bookLines, dvdLines);  // validácia čísla titulu
-
-            bookLines = deleteBookTitle(titleNumber, bookLines);  // odstránenie titulu z kníh
-            dvdLines = deleteDvdTitle(titleNumber, bookLines, dvdLines);  // odstránenie titulu z DVD
-
-            Files.write(titlesFile.toPath(), bookLines, StandardCharsets.UTF_8);
-            Files.write(titlesDVDFile.toPath(), dvdLines, StandardCharsets.UTF_8);
-
             if (titleNumber <= bookLines.size()) {
+                bookLines = deleteBookTitle(titleNumber - 1, bookLines);  // odstránenie titulu z kníh
+                Files.write(titlesFile.toPath(), bookLines, StandardCharsets.UTF_8);
                 books.remove(titleNumber - 1);
             } else {
+                dvdLines = deleteDvdTitle(titleNumber - 1, bookLines, dvdLines);  // odstránenie titulu z DVD
+                Files.write(titlesDVDFile.toPath(), dvdLines, StandardCharsets.UTF_8);
                 dvds.remove(titleNumber - bookLines.size() - 1);
             }
 
             totalTitlesCount--;
             System.out.println("Title removed successfully!" + lineSeparator + "Press enter to continue...");
             scanner.nextLine();
-            displayTitlesMenu();
+            showTitlesMenu();
 
         } catch (IOException e) {
             System.out.println("Title not removed.");
@@ -292,19 +261,10 @@ public class TitlesPage {
         System.out.println("Total number of all titles: " + totalTitlesCount);
     }
 
-
-    //Overenie platnosti vstupného čísla.
-    public int validateTitleNumber(int titleNumber, List<String> bookLines, List<String> dvdLines) {
-        if (titleNumber < 1 || (titleNumber > bookLines.size() && titleNumber > dvdLines.size() + bookLines.size())) {
-            throw new IllegalArgumentException("Invalid title number.");
-        }
-        return titleNumber;
-    }
-
     //Odstránenie titulu z kníh.
     public List<String> deleteBookTitle(int titleNumber, List<String> bookLines) {
         if (titleNumber <= bookLines.size()) {
-            bookLines.remove(titleNumber - 1);
+            bookLines.remove(titleNumber);
         }
         return bookLines;
     }
@@ -312,32 +272,9 @@ public class TitlesPage {
     //Odstránenie titulu z DVD.
     public List<String> deleteDvdTitle(int titleNumber, List<String> bookLines, List<String> dvdLines) {
         if (titleNumber > bookLines.size()) {
-            dvdLines.remove(titleNumber - bookLines.size() - 1);
+            dvdLines.remove(titleNumber - bookLines.size());
         }
         return dvdLines;
-    }
-
-    public int getId() {
-
-        System.out.print("Enter the number of the title: ");
-        int titleNumber = scanner.nextInt();
-        scanner.nextLine();
-        return titleNumber;
-    }
-
-    public List<Object> getAllAvailableTitles() {
-        List<Object> availableTitles = new ArrayList<>();
-        for (Book book : books) {
-            if (book.getAvailableCopies() > 0) {
-                availableTitles.add(book);
-            }
-        }
-        for (DVD dvd : dvds) {
-            if (dvd.getAvailableCopies() > 0) {
-                availableTitles.add(dvd);
-            }
-        }
-        return availableTitles;
     }
 
     private void goBack() {
@@ -373,6 +310,22 @@ public class TitlesPage {
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid value.");
             return validationCheckISBN();
+        }
+    }
+
+    public int validationChecksTheRemovedNumber() {
+        while (true) {
+            String input = scanner.nextLine();
+            try {
+                int choice = Integer.parseInt(input);
+                if (choice >= 1 && choice <= totalTitlesCount) {
+                    return choice;
+                } else {
+                    System.out.println("Please enter a number in the range from 1 to " + totalTitlesCount);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid value.");
+            }
         }
     }
 }
