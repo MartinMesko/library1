@@ -1,4 +1,4 @@
-package sk.itvkurze.lekcia_20;
+package sk.itvkurze.Lekcia_20;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

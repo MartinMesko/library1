@@ -1,4 +1,4 @@
-package sk.itvkurze.lekcia_20;
+package sk.itvkurze.Lekcia_20;
 
 public class Member {
     private final String name;
