@@ -1,4 +1,4 @@
-package sk.itvkurze.Lekcia_15;
+package sk.itvkurze.lekcia_15;
 
 import java.io.BufferedReader;
 import java.io.File;

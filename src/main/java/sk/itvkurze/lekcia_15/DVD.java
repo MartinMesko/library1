@@ -1,17 +1,17 @@
-package sk.itvkurze.Lekcia_15;
+package sk.itvkurze.lekcia_15;
 
-public class Book {
+public class DVD {
     private String authorName;
     private String title;
-    private int pageCount;
-    private String isbn;
+    private int durationInMinutes;
+    private int numberOfTracks;
     private int availableCopies;
 
-    public Book(String title, String authorName, String isbn,int pageCount, int availableCopies) {
+    public DVD(String title, String authorName,int numberOfTracks , int durationInMinutes, int availableCopies) {
         this.authorName = authorName;
         this.title = title;
-        this.pageCount = pageCount;
-        this.isbn = isbn;
+        this.durationInMinutes = durationInMinutes;
+        this.numberOfTracks = numberOfTracks;
         this.availableCopies = availableCopies;
     }
 
@@ -31,20 +31,20 @@ public class Book {
         this.title = title;
     }
 
-    public int getPageCount() {
-        return pageCount;
+    public int getDurationInMinutes() {
+        return durationInMinutes;
     }
 
-    public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
+    public void setDurationInMinutes(int durationInMinutes) {
+        this.durationInMinutes = durationInMinutes;
     }
 
-    public String getIsbn() {
-        return isbn;
+    public int getNumberOfTracks() {
+        return numberOfTracks;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
+    public void setNumberOfTracks(int numberOfTracks) {
+        this.numberOfTracks = numberOfTracks;
     }
 
     public int getAvailableCopies() {
@@ -59,8 +59,8 @@ public class Book {
     public String toString() {
         return ". Name: " + title +
                 " - Author: " + authorName +
-                " | ISBN: " + isbn +
-                " | Number of pages: " + pageCount +
+                " - Number of chapters: " + numberOfTracks +
+                " - Length in minutes: " + durationInMinutes +
                 " | Available copies: " + availableCopies;
     }
 }
